@@ -29,15 +29,23 @@ function initThree() {
     document.getElementById('canvas-frame').appendChild(stats.domElement);
 }
 
+/**
+ * 照相机参数
+ * c_initX  初始x坐标
+ * c_initY  初始y坐标
+ * c_initZ  初始z坐标
+ */
 var camera;
-var controls;
+var c_initX=0;
+var c_initY=250;
+var c_initZ=750;
 
 function initCamera() {
     camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 5000);
     // camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1e10 );
-    camera.position.x = 0;
-    camera.position.y = 250;
-    camera.position.z = 600;
+    camera.position.x = c_initX;
+    camera.position.y = c_initY;
+    camera.position.z = c_initZ;
     camera.up.x = 0;
     camera.up.y = 1;
     camera.up.z = 0;

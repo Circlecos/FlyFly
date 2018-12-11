@@ -13,13 +13,13 @@ var globalInfo = {
 
 	config: {
 		ground: [10000, 100], // [0]地图尺寸  [1]网格大小
-		roadWidth: 350, // 路宽
-		pipeMinHeight: 2000, // 底部水管最低高度
-		pipeMaxHeight: 4000, // 底部水管最高高度
+		roadWidth: 500, // 路宽
+		pipeMinHeight: 1000, // 底部水管最低高度
+		pipeMaxHeight: 2000, // 底部水管最高高度
 		pipeMinGap: 350, // 中间可通过的最小间隙
 		pipeMaxGap: 1000, // 中间可通过的最大间隙
-		pipeDistance: 1000, // 水管之间的默认距离
-		pipeMaxOffset: 250, // 水管相对固定位置的最大偏移量
+		pipeDistance: 1500, // 水管之间的默认距离
+		pipeMaxOffset: 350, // 水管相对固定位置的最大偏移量
 		renderNum: 4, // 最多能看到的水管个数
 	},
 

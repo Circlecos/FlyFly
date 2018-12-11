@@ -9,12 +9,6 @@ function rotateAroundVector(object, axis, radians) {
 	object.rotation.setFromRotationMatrix(object.matrix);
 }
 
-// 让物体在场景中不显示
-function removeObject(obj) {
-	//todo
-	
-}
-
 //生成从minNum到maxNum的随机数
 function randomNum(minNum, maxNum) {
 	switch (arguments.length) {
@@ -29,3 +23,5 @@ function randomNum(minNum, maxNum) {
 			break;
 	}
 }
+
+
