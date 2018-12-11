@@ -5,6 +5,7 @@ function initBird() {
 		color: 0xff0000
 	});
 	var bird = new THREE.Mesh(geometry, material);
+	bird.position.y = 25;	
 	globalInfo.bird.birdObject = bird;
 	scene.add(bird);
 }

@@ -30,7 +30,7 @@ function initMoveEvent() {
 		camera.position.y += 30;
 	}
 	if (!jump) {
-		if (camera.position.y > 200) {
+		if (bird.position.y > 25) {
 			bird.position.y -= 10;
 			camera.position.y -= 10;
 		}

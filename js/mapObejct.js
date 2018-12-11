@@ -17,27 +17,36 @@ function initGrid() {
 
 // 初始化左右墙体
 var wallWidth = 50;
-var wallDepth = 12000;
+var wallDepth = 15000;
 
 function initWall() {
-	var geometry = new THREE.BoxGeometry(wallWidth, wallDepth, 10000);
+	var geometry = new THREE.BoxGeometry(wallWidth, 10000, wallDepth);
 	var material = new THREE.MeshBasicMaterial({
 		color: 0xcccccc
 	});
+	// 左墙体
 	var leftWall = new THREE.Mesh(geometry, material);
 	leftWall.position.x = -(config.roadWidth + wallWidth) / 2;
-	leftWall.position.z = -wallDepth / 2 + 2000;
+	leftWall.position.z = -wallDepth / 2 + 2500;
 	leftWall.type = "墙";
 	object.wallArray.push(leftWall);
+	// 右墙体
+	var rightWall = new THREE.Mesh(geometry, material);
+	rightWall.position.x = (config.roadWidth + wallWidth) / 2;
+	rightWall.position.z = -wallDepth / 2 + 2500;
+	rightWall.type = "墙";
+	object.wallArray.push(rightWall);
+	// 添加到场景
 	scene.add(leftWall);
+	scene.add(rightWall);
 }
 
 // 初始化水管障碍物
 function initPipes() {
-	for (var index = 0; index < config.renderNum; index++) {
+	for (var index = 1; index <= config.renderNum; index++) {
 		var offset = randomNum(-config.pipeMaxOffset, config.pipeMaxOffset);
 		var height = randomNum(config.pipeMinHeight, config.pipeMaxHeight);
-		
+
 		var pipe = generatePipe(index, offset, height);
 		object.pipeArray[index] = pipe;
 		scene.add(pipe);
@@ -46,7 +55,7 @@ function initPipes() {
 
 // 初始化小鸟飞过的水管
 function initFlyOver() {
-	for (var index = 0; index < config.renderNum * 2 + 1; index++) {
+	for (var index = 0; index < config.renderNum + 1; index++) {
 		object.flyOver.push(false);
 	}
 }
@@ -73,7 +82,7 @@ function generatePipe(index, offset, height) {
 	pipe = new THREE.Mesh(geometry, material);
 	pipe.position.x = 0;
 	pipe.position.y = geometry.parameters.height / 2;
-	pipe.position.z = -(index + 1) * config.pipeDistance + offset;
+	pipe.position.z = -index * config.pipeDistance + offset;
 	return pipe;
 }
 

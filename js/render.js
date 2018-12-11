@@ -38,11 +38,11 @@ function drawNewMapObjects(bird, object, config) {
 	// 水管之间的默认距离
 	var dist = config.pipeDistance;
 	// 小鸟当前飞过第index个水管
-	var index = Math.floor(pos / dist) - 1;
+	var index = Math.floor(pos / dist);
 	// 记录小鸟是否飞过某个水管
 	var flyOver = object.flyOver;
 
-	if (index >= 0 && !flyOver[index]) {
+	if (index >= 1 && !flyOver[index]) {
 		// 水管相对固定位置的随机偏移量
 		var offset = randomNum(-config.pipeMaxOffset, config.pipeMaxOffset);
 		// 水管的底部高度
@@ -52,19 +52,18 @@ function drawNewMapObjects(bird, object, config) {
 		// 标注小鸟已经飞过index处的水管
 		flyOver[index] = true;
 		// 小鸟上一个飞过的水管标注为[未飞过]状态
-		flyOver[(index + num) % (num + 1)] = false;
+		flyOver[index - 1] = false;
+		if (index == 1) {
+			flyOver[num + 1] = false;
+		}
+		// 重新生成小鸟身后的水管
+		addPipe(index - 1, offset, height);
 
-		if (index == num) {
-			var pipeBehindBird = object.pipeArray[index - 1];
-			pipeBehindBird.position.z += dist * num;
+		if (index == num + 1) {
 			// 回到起点
 			bird.position.z = 0;
 			camera.position.z = c_initZ;
 		}
-
-		if (index >= 1) {
-			// 重新生成小鸟身后的水管
-			addPipe(index - 1, offset, height);
-		}
+		console.log(flyOver)
 	}
 }
