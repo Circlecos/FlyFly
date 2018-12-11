@@ -37,12 +37,11 @@ function initThree() {
  */
 var camera;
 var c_initX=0;
-var c_initY=250;
-var c_initZ=750;
+var c_initY=150;
+var c_initZ=450;
 
 function initCamera() {
-    camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 5000);
-    // camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1e10 );
+    camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 6500);
     camera.position.x = c_initX;
     camera.position.y = c_initY;
     camera.position.z = c_initZ;

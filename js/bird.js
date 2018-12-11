@@ -1,6 +1,6 @@
 // 新建鸟对象
 function initBird() {
-	var geometry = new THREE.SphereGeometry(25, 32, 32);
+	var geometry = new THREE.SphereGeometry(10, 32, 32);
 	var material = new THREE.MeshPhongMaterial({
 		color: 0xff0000
 	});

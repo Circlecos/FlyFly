@@ -17,22 +17,25 @@ function initGrid() {
 
 // 初始化左右墙体
 var wallWidth = 50;
+var wallHeight = 5000;
 var wallDepth = 15000;
 
 function initWall() {
-	var geometry = new THREE.BoxGeometry(wallWidth, 10000, wallDepth);
+	var geometry = new THREE.BoxGeometry(wallWidth, wallHeight, wallDepth);
 	var material = new THREE.MeshBasicMaterial({
 		color: 0xcccccc
 	});
 	// 左墙体
 	var leftWall = new THREE.Mesh(geometry, material);
 	leftWall.position.x = -(config.roadWidth + wallWidth) / 2;
+	leftWall.position.y = wallHeight / 2;
 	leftWall.position.z = -wallDepth / 2 + 2500;
 	leftWall.type = "墙";
 	object.wallArray.push(leftWall);
 	// 右墙体
 	var rightWall = new THREE.Mesh(geometry, material);
 	rightWall.position.x = (config.roadWidth + wallWidth) / 2;
+	rightWall.position.y = wallHeight / 2;
 	rightWall.position.z = -wallDepth / 2 + 2500;
 	rightWall.type = "墙";
 	object.wallArray.push(rightWall);
@@ -46,8 +49,9 @@ function initPipes() {
 	for (var index = 1; index <= config.renderNum; index++) {
 		var offset = randomNum(-config.pipeMaxOffset, config.pipeMaxOffset);
 		var height = randomNum(config.pipeMinHeight, config.pipeMaxHeight);
+		var gap = randomNum(config.pipeMinGap, config.pipeMaxGap);
 
-		var pipe = generatePipe(index, offset, height);
+		var pipe = generatePipe(index, offset, height, gap);
 		object.pipeArray[index] = pipe;
 		scene.add(pipe);
 	}
@@ -60,19 +64,15 @@ function initFlyOver() {
 	}
 }
 
-// 添加一个底部高度为水管到相对下标index处偏移量为offset的地方
-function addPipe(index, offset, height) {
-	var object = globalInfo.object;
-	// 先移除该位置原来的水管
-	removePipe(index);
-	// 生成新的水管并添加到场景和全局数组中
-	var pipe = generatePipe(index, offset, height);
-	object.pipeArray[index] = pipe;
-	scene.add(pipe);
-}
-
-// 生成一个位置处于下标index处、左右最大偏移量为randomOffset的水管
-function generatePipe(index, offset, height) {
+/**
+ * 生成一个水管
+ * @param  index  水管所在Z轴的下标，(index*两水管距离)为水管的固定位置
+ * @param  offset  水管相对于固定位置的偏移量(可正负)
+ * @param  height  水管底部的高度
+ * @param  gap  上下水管的间隙
+ * @return  水管对象
+ */
+function generatePipe(index, offset, height, gap) {
 	var config = globalInfo.config;
 
 	var geometry = new THREE.CylinderGeometry(config.roadWidth / 2, config.roadWidth / 2, height, 12);
@@ -84,6 +84,17 @@ function generatePipe(index, offset, height) {
 	pipe.position.y = geometry.parameters.height / 2;
 	pipe.position.z = -index * config.pipeDistance + offset;
 	return pipe;
+}
+
+// 添加水管到场景中
+function addPipe(index, offset, height, gap) {
+	var object = globalInfo.object;
+	// 先移除该位置原来的水管
+	removePipe(index);
+	// 生成新的水管并添加到场景和全局数组中
+	var pipe = generatePipe(index, offset, height, gap);
+	object.pipeArray[index] = pipe;
+	scene.add(pipe);
 }
 
 // 移除下标index处的水管
