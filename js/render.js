@@ -1,27 +1,3 @@
-// 帧循环、游戏循环
-function animation() {
-	// 小鸟对象
-	var bird = globalInfo.bird.birdObject;
-	// 其他对象
-	var object = globalInfo.object;
-	// 当前游戏全局设置
-	var config = globalInfo.config;
-
-	// 移动事件
-	initMoveEvent();
-
-	// var ret = collision();
-
-	makeSomethingWithRet();
-
-	//绘制新的障碍物和奖励物
-	drawNewMapObjects(bird, object, config);
-
-
-	renderer.render(scene, camera);
-	requestAnimationFrame(animation);
-}
-
 // 处理碰撞检测返回的结果（是否中止）
 function makeSomethingWithRet() {
 
@@ -59,7 +35,7 @@ function drawNewMapObjects(bird, object, config) {
 		if (index == num + 1) {
 			// 回到起点
 			bird.position.z = 0;
-			camera.position.z = c_initZ;
+			camera.position.z = globalInfo.moving.camera.initZ;
 		}
 	}
 }

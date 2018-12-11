@@ -1,3 +1,11 @@
+var up = false;
+var down = false;
+var left = false;
+var right = false;
+var jump = false;
+
+var speedX = 25;
+var rotateX = 0.1;
 /**
  * 移动事件
  * 

@@ -26,9 +26,9 @@ var globalInfo = {
 
 	moving: {
 		camera: {
-			eye: [],
-			at: [-0.5, 0, 0.5],
-			up: [0, 1, 0],
+			initX: 0, // 相机初始X坐标
+			initY: 150, // 相机初始Y坐标
+			initZ: 450, // 相机初始Z坐标
 		},
 		moveForwardSpeed: null, // 前进/后退速度
 		moveSideSpeed: null, // 向左右移动速度

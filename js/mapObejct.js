@@ -51,9 +51,7 @@ function initPipes() {
 		var height = randomNum(config.pipeMinHeight, config.pipeMaxHeight);
 		var gap = randomNum(config.pipeMinGap, config.pipeMaxGap);
 
-		var pipe = generatePipe(index, offset, height, gap);
-		object.pipeArray[index] = pipe;
-		scene.add(pipe);
+		addPipe(index, offset, height, gap);
 	}
 }
 
@@ -66,11 +64,11 @@ function initFlyOver() {
 
 /**
  * 生成一个水管
- * @param  index  水管所在Z轴的下标，(index*两水管距离)为水管的固定位置
- * @param  offset  水管相对于固定位置的偏移量(可正负)
- * @param  height  水管底部的高度
- * @param  gap  上下水管的间隙
- * @return  水管对象
+ * @param {int} index 水管所在Z轴的下标，(index*两水管距离)为水管的固定位置
+ * @param {int} offset 水管相对于固定位置的偏移量(可正负)
+ * @param {int} height 水管底部的高度
+ * @param {int} gap 上下水管的间隙
+ * @return {Object3D} 返回水管对象
  */
 function generatePipe(index, offset, height, gap) {
 	var config = globalInfo.config;
