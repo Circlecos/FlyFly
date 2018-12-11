@@ -5,7 +5,7 @@ var left = false;
 var right = false;
 var jump = false;
 
-var speedX = 10;
+var speedX = 25;
 var rotateX = 0.1;
 
 var renderer;
@@ -33,7 +33,7 @@ var camera;
 var controls;
 
 function initCamera() {
-    camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000000);
+    camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 5000);
     // camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1e10 );
     camera.position.x = 0;
     camera.position.y = 250;
@@ -62,8 +62,6 @@ var light;
 // 界面逻辑“开始游戏”调用这个函数
 function threeStart() {
     initGUI();
-    
-    initMoveEvent(); // 对移动事件进行挂载
     
     initThree();
     initCamera();
