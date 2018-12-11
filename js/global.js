@@ -5,12 +5,13 @@ var globalInfo = {
 	},
 
 	system: {
-		time: null, // 游戏已进行时间
-		score: null, // 当前得分
-		pause: null, // 暂停按钮
-		historyTopScore: null, // 历史最高得分
+		time: 0, // 游戏已进行时间
+		score: 0, // 当前得分
+		pause: false, // 暂停按钮
+		historyTopScore: 0, // 历史最高得分
 	},
 
+	// 游戏设置（可变参数）
 	config: {
 		ground: [10000, 100], // [0]地图尺寸  [1]网格大小
 		roadWidth: 500, // 路宽

@@ -1,4 +1,3 @@
-
 // 将一个物体绕任意轴旋转
 function rotateAroundVector(object, axis, radians) {
 	var rotWorldMatrix;
@@ -9,7 +8,7 @@ function rotateAroundVector(object, axis, radians) {
 	object.rotation.setFromRotationMatrix(object.matrix);
 }
 
-//生成从minNum到maxNum的随机数
+// 生成从minNum到maxNum的随机数
 function randomNum(minNum, maxNum) {
 	switch (arguments.length) {
 		case 1:
@@ -23,5 +22,3 @@ function randomNum(minNum, maxNum) {
 			break;
 	}
 }
-
-
