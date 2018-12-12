@@ -15,7 +15,7 @@ function initGrid() {
 	scene.add(grid);
 }
 
-// 初始化左右墙体
+// 初始化墙体
 var wallWidth = 50;
 var wallHeight = 5000;
 var wallDepth = 15000;
@@ -27,16 +27,12 @@ function initWall() {
 	});
 	// 左墙体
 	var leftWall = new THREE.Mesh(geometry, material);
-	leftWall.position.x = -(config.roadWidth + wallWidth) / 2;
-	leftWall.position.y = wallHeight / 2;
-	leftWall.position.z = -wallDepth / 2 + 2500;
+	setLocation(leftWall, -(config.roadWidth + wallWidth) / 2, wallHeight / 2, -wallDepth / 2 + 2500);
 	leftWall.type = "墙";
 	object.wallArray.push(leftWall);
 	// 右墙体
 	var rightWall = new THREE.Mesh(geometry, material);
-	rightWall.position.x = (config.roadWidth + wallWidth) / 2;
-	rightWall.position.y = wallHeight / 2;
-	rightWall.position.z = -wallDepth / 2 + 2500;
+	setLocation(rightWall, (config.roadWidth + wallWidth) / 2, wallHeight / 2, -wallDepth / 2 + 2500);
 	rightWall.type = "墙";
 	object.wallArray.push(rightWall);
 	// 添加到场景
@@ -46,7 +42,10 @@ function initWall() {
 
 // 初始化水管障碍物
 function initPipes() {
-	for (var index = 0; index <= config.renderNum; index++) {
+	// 在起点添加一个看不见的水管以保证pipeArray数组能够进行碰撞检测
+	var emptyObject = addPipe(0, 0, 0, 0);
+	emptyObject.visible = false;
+	for (var index = 1; index <= config.renderNum; index++) {
 		var offset = randomNum(-config.pipeMaxOffset, config.pipeMaxOffset);
 		var height = randomNum(config.pipeMinHeight, config.pipeMaxHeight);
 		var gap = randomNum(config.pipeMinGap, config.pipeMaxGap);
@@ -73,7 +72,7 @@ function initFlyOver() {
 function generatePipe(index, offset, height, gap) {
 	var config = globalInfo.config;
 
-	var geometry = new THREE.CylinderGeometry(config.roadWidth / 2, config.roadWidth / 2, height, 320);
+	var geometry = new THREE.CylinderGeometry(config.roadWidth / 2, config.roadWidth / 2, height, 160);
 	var material = new THREE.MeshPhongMaterial({
 		color: 0x00FF00
 	});
@@ -93,6 +92,7 @@ function addPipe(index, offset, height, gap) {
 	var pipe = generatePipe(index, offset, height, gap);
 	object.pipeArray[index] = pipe;
 	scene.add(pipe);
+	return pipe;
 }
 
 // 移除下标index处的水管

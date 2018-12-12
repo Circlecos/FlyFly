@@ -42,28 +42,6 @@ function initScene() {
 	scene = new THREE.Scene();
 }
 
-// 帧循环、游戏循环
-function animation() {
-	// 小鸟对象
-	var bird = globalInfo.bird.birdObject;
-	// 其他对象
-	var object = globalInfo.object;
-	// 当前游戏全局设置
-	var config = globalInfo.config;
-
-	// 移动事件
-	moveEvent(bird, object);
-
-	// 碰撞检测
-	checkCollision(bird, object);
-
-	// 绘制新的障碍物和奖励物
-	drawNewMapObjects(bird, object, config);
-
-	renderer.render(scene, camera);
-	requestAnimationFrame(animation);
-}
-
 // 游戏入口主函数
 function gameStart() {
 	initThree();

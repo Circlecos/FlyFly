@@ -1,9 +1,31 @@
+// 帧循环、游戏循环
+function animation() {
+	// 小鸟对象
+	var bird = globalInfo.bird.birdObject;
+	// 其他对象
+	var object = globalInfo.object;
+	// 当前游戏全局设置
+	var config = globalInfo.config;
+
+	// 移动事件
+	moveEvent(bird, object);
+
+	// 碰撞检测
+	checkCollision(bird, object);
+
+	// 绘制新的障碍物和奖励物
+	drawNewMapObjects(bird, object, config);
+
+	renderer.render(scene, camera);
+	requestAnimationFrame(animation);
+}
+
 // 碰撞检测
 function checkCollision(bird, object) {
-	var pipes = object.pipeArray;
-	var ret = collision(bird, pipes);
+	var pipeArray = object.pipeArray;
+	var ret = collision(bird, pipeArray);
 	if (ret) {
-		console.log(ret.position.z)
+		console.log(ret.position.z);
 	}
 }
 

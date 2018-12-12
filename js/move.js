@@ -12,7 +12,7 @@ function moveEvent(bird, object) {
 	// todo: 1.修复moveEvent 2.添加鼠标实现的环视逻辑（可能）
 	var bird = globalInfo.bird.birdObject;
 	if (up) {
-		rotateAroundVector(bird, new THREE.Vector3(1, 0, 0), -rotateX);
+		// rotateAroundVector(bird, new THREE.Vector3(1, 0, 0), -rotateX);
 		bird.position.z -= speedX;
 		camera.position.z -= speedX;
 	}
@@ -36,7 +36,7 @@ function moveEvent(bird, object) {
 		camera.position.y += 30;
 	}
 	if (!jump) {
-		if (bird.position.y > 25) {
+		if (bird.position.y > 50) {
 			bird.position.y -= 10;
 			camera.position.y -= 10;
 		}
