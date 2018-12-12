@@ -27,7 +27,7 @@ var globalInfo = {
 	moving: {
 		camera: {
 			initX: 0, // 相机初始X坐标
-			initY: 150, // 相机初始Y坐标
+			initY: 0, // 相机初始Y坐标
 			initZ: 450, // 相机初始Z坐标
 		},
 		moveForwardSpeed: null, // 前进/后退速度

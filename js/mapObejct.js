@@ -46,7 +46,7 @@ function initWall() {
 
 // 初始化水管障碍物
 function initPipes() {
-	for (var index = 1; index <= config.renderNum; index++) {
+	for (var index = 0; index <= config.renderNum; index++) {
 		var offset = randomNum(-config.pipeMaxOffset, config.pipeMaxOffset);
 		var height = randomNum(config.pipeMinHeight, config.pipeMaxHeight);
 		var gap = randomNum(config.pipeMinGap, config.pipeMaxGap);
@@ -73,7 +73,7 @@ function initFlyOver() {
 function generatePipe(index, offset, height, gap) {
 	var config = globalInfo.config;
 
-	var geometry = new THREE.CylinderGeometry(config.roadWidth / 2, config.roadWidth / 2, height, 12);
+	var geometry = new THREE.CylinderGeometry(config.roadWidth / 2, config.roadWidth / 2, height, 320);
 	var material = new THREE.MeshPhongMaterial({
 		color: 0x00FF00
 	});

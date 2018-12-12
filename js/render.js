@@ -1,6 +1,10 @@
-// 处理碰撞检测返回的结果（是否中止）
-function makeSomethingWithRet() {
-
+// 碰撞检测
+function checkCollision(bird, object) {
+	var pipes = object.pipeArray;
+	var ret = collision(bird, pipes);
+	if (ret) {
+		console.log(ret.position.z)
+	}
 }
 
 // 绘制新的障碍物和奖励物并处理循环逻辑

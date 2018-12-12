@@ -58,6 +58,7 @@ function collision(obj, objArray) {
 		if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
 			return collisionResults[0].object;
 		}
-		return null;
 	}
+	
+	return null;
 }

@@ -1,6 +1,5 @@
 window.onkeydown = function(ev) {
 	var keychar = String.fromCharCode(ev.keyCode);
-	console.log(keychar)
 	switch (keychar) {
 		case 'w':
 		case 'W':

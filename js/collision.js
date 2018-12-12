@@ -1,7 +1,7 @@
 
 
-// 碰到障碍物时中止游戏
-function collideObstacles() {
+// 碰到水管时中止游戏
+function collidePipes() {
 
 }
 

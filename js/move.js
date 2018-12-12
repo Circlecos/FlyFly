@@ -4,13 +4,11 @@ var left = false;
 var right = false;
 var jump = false;
 
-var speedX = 25;
+var speedX = 15;
 var rotateX = 0.1;
-/**
- * 移动事件
- * 
- */
-function initMoveEvent() {
+
+// 移动事件
+function moveEvent(bird, object) {
 	// todo: 1.修复moveEvent 2.添加鼠标实现的环视逻辑（可能）
 	var bird = globalInfo.bird.birdObject;
 	if (up) {

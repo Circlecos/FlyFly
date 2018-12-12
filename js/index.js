@@ -52,11 +52,10 @@ function animation() {
 	var config = globalInfo.config;
 
 	// 移动事件
-	initMoveEvent();
+	moveEvent(bird, object);
 
-	// var ret = collision();
-
-	makeSomethingWithRet();
+	// 碰撞检测
+	checkCollision(bird, object);
 
 	// 绘制新的障碍物和奖励物
 	drawNewMapObjects(bird, object, config);
