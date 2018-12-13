@@ -24,9 +24,9 @@ function initThree() {
 // 初始化照相机
 function initCamera() {
 	camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 6500);
-	camera.position.x = globalInfo.moving.camera.initX;
-	camera.position.y = globalInfo.moving.camera.initY;
-	camera.position.z = globalInfo.moving.camera.initZ;
+	camera.position.x = global.moving.camera.initX;
+	camera.position.y = global.moving.camera.initY;
+	camera.position.z = global.moving.camera.initZ;
 	camera.up.x = 0;
 	camera.up.y = 1;
 	camera.up.z = 0;

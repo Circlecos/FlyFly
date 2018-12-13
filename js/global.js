@@ -1,4 +1,4 @@
-var globalInfo = {
+var global = {
 	bird: {
 		birdObject: null, // 鸟的对象
 		birdTextureFile: null, // 鸟的纹理文件
@@ -13,15 +13,31 @@ var globalInfo = {
 
 	// 游戏设置（可变参数）
 	config: {
-		ground: [10000, 100], // [0]地图尺寸  [1]网格大小
-		roadWidth: 500, // 路宽
-		pipeMinHeight: 1000, // 底部水管最低高度
-		pipeMaxHeight: 2000, // 底部水管最高高度
-		pipeMinGap: 350, // 中间可通过的最小间隙
-		pipeMaxGap: 1000, // 中间可通过的最大间隙
-		pipeDistance: 1500, // 水管之间的默认距离
-		pipeMaxOffset: 350, // 水管相对固定位置的最大偏移量
-		renderNum: 4, // 最多能看到的水管个数
+		
+	},
+	
+	// 游戏对象参数
+	objectInfo:{
+		// 地图
+		map:{
+			ground: [10000, 100], // [0]地图尺寸  [1]网格大小
+			roadWidth: 500, // 路宽
+			renderNum: 4, // 最多能看到的水管个数
+		},
+		// 水管
+		pipe:{
+			minHeight: 1000, // 底部水管最低高度
+			maxHeight: 2000, // 底部水管最高高度
+			minGap: 350, // 中间可通过的最小间隙
+			maxGap: 1000, // 中间可通过的最大间隙
+			distance: 1500, // 水管之间的默认距离
+			maxOffset: 350, // 水管相对固定位置的最大偏移量
+		},
+		// 小鸟包围盒
+		birdCoverBox:{
+			radius:50,//
+			
+		}
 	},
 
 	moving: {

@@ -10,7 +10,7 @@ var rotateX = 0.1;
 // 移动事件
 function moveEvent(bird, object) {
 	// todo: 1.修复moveEvent 2.添加鼠标实现的环视逻辑（可能）
-	var bird = globalInfo.bird.birdObject;
+	var bird = global.bird.birdObject;
 	if (up) {
 		// rotateAroundVector(bird, new THREE.Vector3(1, 0, 0), -rotateX);
 		bird.position.z -= speedX;
