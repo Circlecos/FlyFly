@@ -1,5 +1,6 @@
 // 帧循环、游戏循环
 function animation() {
+	global.system.time++;
 	// 小鸟对象
 	var bird = global.bird.birdObject;
 	// 其他对象
@@ -23,10 +24,14 @@ function animation() {
 
 // 碰撞检测
 function checkCollision(bird, object) {
+	if (global.system.time < 10){
+		// 奇怪的bug：游戏一开始，小鸟会默认和一个远处的物体碰撞
+		return;
+	}
 	var pipeArray = object.pipeArray;
 	var ret = collision(bird[1], pipeArray);
 	if (ret) {
-		console.log(ret.position.z);
+		alert("GAME OVER!");
 	}
 }
 

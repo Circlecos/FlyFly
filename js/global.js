@@ -46,9 +46,9 @@ var global = {
 	// 移动事件参数
 	moving: {
 		camera: {
-			initX: 0, // 相机初始X坐标
-			initY: 0, // 相机初始Y坐标
-			initZ: 1650, // 相机初始Z坐标
+			initX: 1650, // 相机初始X坐标
+			initY: 1000, // 相机初始Y坐标
+			initZ: 0, // 相机初始Z坐标
 		},
 		moveForwardSpeed: 15, // 前进速度
 		moveSideSpeed: 15, // 向左右移动速度

@@ -37,7 +37,7 @@ function initWall() {
 	object.wallArray.push(topWall);
 	// 添加到场景
 	scene.add(leftWall);
-	scene.add(rightWall);
+	// scene.add(rightWall);
 	scene.add(topWall);
 }
 

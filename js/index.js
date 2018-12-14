@@ -31,8 +31,8 @@ function initCamera() {
 	camera.up.y = 1;
 	camera.up.z = 0;
 	camera.lookAt({
-		x: 0,
-		y: 0,
+		x: -1,
+		y: 1000,
 		z: 0
 	});
 }

@@ -18,7 +18,7 @@ function createBird() {
 	});
 
 	var bird = new THREE.Mesh(geometry, material);
-	bird.position.y = 50;
+	bird.position.y = 1000;
 	return bird;
 }
 
@@ -30,7 +30,7 @@ function createCoverBox() {
 	});
 
 	var box = new THREE.Mesh(geometry, material);
-	box.position.y = 50;
+	box.position.y = 1000;
 	return box;
 }
 
