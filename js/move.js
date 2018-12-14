@@ -1,44 +1,72 @@
-var up = false;
-var down = false;
+var forward = true;
 var left = false;
 var right = false;
 var jump = false;
 
-var speedX = 15;
-var rotateX = 0.1;
-
 // 移动事件
-function moveEvent(bird, object) {
+function moveEvent(bird) {
+	var forwardSpeed = global.moving.moveForwardSpeed;
+	var sideSpeed = global.moving.moveSideSpeed;
+	var jumpSpeed = global.moving.jumpSpeed;
+	var fallSpeed = global.moving.fallSpeed;
 	// todo: 1.修复moveEvent 2.添加鼠标实现的环视逻辑（可能）
-	var bird = global.bird.birdObject;
-	if (up) {
-		// rotateAroundVector(bird, new THREE.Vector3(1, 0, 0), -rotateX);
-		bird.position.z -= speedX;
-		camera.position.z -= speedX;
-	}
-	if (down) {
-		rotateAroundVector(bird, new THREE.Vector3(1, 0, 0), rotateX);
-		bird.position.z += speedX;
-		camera.position.z += speedX;
+	if (forward) {
+		moveForward(bird, forwardSpeed);
 	}
 	if (left) {
-		rotateAroundVector(bird, new THREE.Vector3(0, 0, 1), rotateX);
-		bird.position.x -= speedX;
-		camera.position.x -= speedX;
+		moveLeft(bird, sideSpeed);
 	}
 	if (right) {
-		rotateAroundVector(bird, new THREE.Vector3(0, 0, 1), -rotateX);
-		bird.position.x += speedX;
-		camera.position.x += speedX;
+		moveRight(bird, sideSpeed);
 	}
 	if (jump) {
-		bird.position.y += 30;
-		camera.position.y += 30;
+		jumpUp(bird, jumpSpeed);
 	}
 	if (!jump) {
-		if (bird.position.y > 50) {
-			bird.position.y -= 10;
-			camera.position.y -= 10;
-		}
+		fallDown(bird, fallSpeed);
 	}
+}
+
+// 前进
+function moveForward(bird, speed) {
+	bird[0].position.z -= speed;
+	bird[1].position.z -= speed;
+	camera.position.z -= speed;
+}
+
+// 左偏
+function moveLeft(bird, speed) {
+	bird[0].position.x -= speed;
+	bird[1].position.x -= speed;
+	camera.position.x -= speed;
+}
+
+// 右偏
+function moveRight(bird, speed) {
+	bird[0].position.x += speed;
+	bird[1].position.x += speed;
+	camera.position.x += speed;
+}
+
+// 跳跃
+function jumpUp(bird, speed) {
+	bird[0].position.y += speed;
+	bird[1].position.y += speed;
+	camera.position.y += speed;
+}
+
+// 下降
+function fallDown(bird, speed) {
+	if (bird[1].position.y > 50){
+		bird[0].position.y -= speed;
+		bird[1].position.y -= speed;
+		camera.position.y -= speed;
+	}
+}
+
+// 回到起点
+function backToStartPoint(bird) {
+	bird[0].position.z = 0;
+	bird[1].position.z = 0;
+	camera.position.z = global.moving.camera.initZ;
 }

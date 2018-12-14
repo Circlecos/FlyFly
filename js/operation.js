@@ -1,4 +1,11 @@
 window.onkeydown = function(ev) {
+	if (ev && ev.preventDefault)
+		//阻止默认浏览器动作(W3C) 
+		ev.preventDefault();
+	else
+		//IE中阻止函数器默认动作的方式 
+		window.event.returnValue = false;
+
 	var keychar = String.fromCharCode(ev.keyCode);
 	switch (keychar) {
 		case 'w':
@@ -23,6 +30,13 @@ window.onkeydown = function(ev) {
 	}
 }
 window.onkeyup = function(ev) {
+	if (ev && ev.preventDefault)
+		//阻止默认浏览器动作(W3C) 
+		ev.preventDefault();
+	else
+		//IE中阻止函数器默认动作的方式 
+		window.event.returnValue = false;
+		
 	var keychar = String.fromCharCode(ev.keyCode);
 	switch (keychar) {
 		case 'w':
@@ -46,5 +60,3 @@ window.onkeyup = function(ev) {
 			break;
 	}
 }
-
-
