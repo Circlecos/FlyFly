@@ -13,6 +13,7 @@ window.onkeydown = function(ev) {
 			break;
 		case ' ':
 			jump = true;
+			v = 0;
 			break;
 	}
 }

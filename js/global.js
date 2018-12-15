@@ -29,9 +29,9 @@ var global = {
 		},
 		// 水管
 		pipe: {
-			minHeight: 1000, // 底部水管最低高度
-			maxHeight: 2000, // 底部水管最高高度
-			minGap: 350, // 中间可通过的最小间隙
+			minHeight: 500, // 底部水管最低高度
+			maxHeight: 2500, // 底部水管最高高度
+			minGap: 450, // 中间可通过的最小间隙
 			maxGap: 1000, // 中间可通过的最大间隙
 			distance: 1750, // 水管之间的默认距离
 			maxOffset: 350, // 水管相对固定位置的最大偏移量
@@ -46,7 +46,7 @@ var global = {
 	// 移动事件参数
 	moving: {
 		camera: {
-			initX: 1650, // 相机初始X坐标
+			initX: 2500, // 相机初始X坐标
 			initY: 1000, // 相机初始Y坐标
 			initZ: 0, // 相机初始Z坐标
 		},
