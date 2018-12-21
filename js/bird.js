@@ -1,16 +1,12 @@
-<<<<<<< HEAD
-// 新建鸟对象
 
-=======
-var bird = global.objectInfo.birdCoverBox;
+// var bird = global.objectInfo.birdCoverBox;
 
-// 初始化鸟对象
->>>>>>> fda726f845fbc6a1b7429953b3ac697b74c2e906
 function initBird() {
 	var bird = createBird();
 	var coverBox = createCoverBox();
-	global.bird.birdObject[0] = bird;
+    global.bird.birdObject[0]= bird;
 	global.bird.birdObject[1] = coverBox;
+    loadBirdModel();
 	scene.add(bird);
 	scene.add(coverBox);
 }
@@ -23,16 +19,11 @@ function createBird() {
 	});
 
 	var bird = new THREE.Mesh(geometry, material);
-<<<<<<< HEAD
-	bird.position.y = 50;	
-	global.bird.birdObject[0]= bird;
-    global.bird.birdObject[1] = loadBirdModel();
+	bird.position.y = 1000;
 	scene.add(bird);
 	bird.visible = false;
-=======
-	bird.position.y = 1000;
+
 	return bird;
->>>>>>> fda726f845fbc6a1b7429953b3ac697b74c2e906
 }
 
 // 创建包围盒对象
@@ -51,13 +42,13 @@ function createCoverBox() {
 function loadBirdModel() {
     var objLoader = new THREE.OBJLoader();
     objLoader.load(global.bird.birdModelFilePath + global.bird.birdModelFileName, function(object){
-        object.positon = 0, 0, 0;
-        object.scale.set(3, 3, 3);
-        global.bird.birdObject[1] = object;
-        rotateAroundVector(global.bird.birdObject[1], new THREE.Vector3(0, 1, 0), Math.PI);
+        object.position.set(0, 900, 0);
+        object.scale.set(15, 15, 15);
+        global.bird.birdObject[2] = object;
+        rotateAroundVector(global.bird.birdObject[2], new THREE.Vector3(0, 1, 0), Math.PI);
 
-        scene.add(global.bird.birdObject[1]);
-    
+        scene.add(global.bird.birdObject[2]);
+        animation();
     });
 
 }

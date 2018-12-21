@@ -2,7 +2,7 @@
 function animation() {
 	global.system.time++;
 	// 小鸟对象
-	var bird = global.bird.birdObject[0];
+	var bird = global.bird.birdObject;
 	// 其他对象
 	var object = global.object;
 	// 当前游戏全局设置
@@ -29,7 +29,7 @@ function checkCollision(bird, object) {
 		return;
 	}
 	var pipeArray = object.pipeArray;
-	var ret = collision(bird[1], pipeArray);
+	var ret = collision(bird[0], pipeArray);
 	if (ret) {
 		alert("GAME OVER!");
 	}
@@ -65,17 +65,15 @@ function drawNewMapObjects(bird, object, objectInfo) {
 		// 重新生成小鸟身后的水管
 		addPipe(index - 1, offset, height, gap);
 
-		console.log("birdPos",bird.position.z);
+		console.log("birdPos",bird[0].position.z);
 		console.log("birdTruePos",global.bird.birdObject[1].position.z);
 		if (index == renderNum + 1) {
 			// 回到起点
-<<<<<<< HEAD
-			bird.position.z = 0;
+			bird[0].position.z = 0;
 			global.bird.birdObject[1].position.z = 0;
+            global.bird.birdObject[2].position.z = 0;
 			camera.position.z = global.moving.camera.initZ;
-=======
-			backToStartPoint(bird); // move.js
->>>>>>> fda726f845fbc6a1b7429953b3ac697b74c2e906
+			backToStartPoint(bird);
 		}
 	}
 }

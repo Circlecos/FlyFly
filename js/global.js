@@ -1,14 +1,11 @@
 var global = {
-<<<<<<< HEAD
 	bird: {
-		birdObject: [null,null], // 鸟的对象
+		birdObject: [null,null, null], // 鸟的对象
 		birdModelFilePath: 'model/White_Eagle/', //鸟的模型路径
 		birdModelFileName: 'Eagle02_sale.obj', // 鸟的模型文件名
 		rotateAngle:[0,0,0] // 鸟的旋转角 x轴、y轴、z轴
 	},
 
-=======
->>>>>>> fda726f845fbc6a1b7429953b3ac697b74c2e906
 	system: {
 		time: 0, // 游戏已进行时间
 		score: 0, // 当前得分
@@ -16,10 +13,6 @@ var global = {
 		historyTopScore: 0, // 历史最高得分
 	},
 
-	bird: {
-		birdObject: [null, null], // 鸟的对象 [0]本体对象 [1]包围盒对象
-		birdTextureFile: null, // 鸟的纹理文件
-	},
 
 	// 游戏对象数组
 	object: {

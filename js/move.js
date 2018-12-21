@@ -14,45 +14,7 @@ function moveEvent(bird) {
 	var sideSpeed = global.moving.moveSideSpeed;
 	var jumpSpeed = global.moving.jumpSpeed;
 	// todo: 1.修复moveEvent 2.添加鼠标实现的环视逻辑（可能）
-<<<<<<< HEAD
-	var bird = global.bird.birdObject[0];
-	var birdTrueObj = global.bird.birdObject[1];
-	if (up) {
-		bird.position.z -= speedX;
-		birdTrueObj.position.z -= speedX;
-		camera.position.z -= speedX;
-	}
-	if (down) {
-		bird.position.z += speedX;
-		birdTrueObj.position.z += speedX;
-		camera.position.z += speedX;
-	}
-	if (left) {
-		// rotateAroundVector(birdTrueObj, new THREE.Vector3(0, 0, 1), Math.PI/300.0);
-		bird.position.x -= speedX;
-		birdTrueObj.position.x -= speedX;
-		camera.position.x -= speedX;
-	}
-	if (right) {
-        // rotateAroundVector(birdTrueObj, new THREE.Vector3(0, 0, 1), -Math.PI/300.0);
-		bird.position.x += speedX;
-		birdTrueObj.position.x += speedX;
-		camera.position.x += speedX;
-	}
-	if (jump) {
-        // rotateAroundVector(birdTrueObj, new THREE.Vector3(1, 0, 0), Math.PI/300.0);
-		bird.position.y += 30;
-		birdTrueObj.position.y += 30;
-		camera.position.y += 30;
-	}
-	if (!jump) {
-		if (bird.position.y > 50) {
-            // rotateAroundVector(birdTrueObj, new THREE.Vector3(1, 0, 0), -Math.PI/300.0);
-			bird.position.y -= 10;
-			birdTrueObj.position.y -= 10;
-			camera.position.y -= 10;
-		}
-=======
+
 	if (forward) {
 		moveForward(bird, forwardSpeed);
 	}
@@ -72,28 +34,35 @@ function moveEvent(bird) {
 function moveForward(bird, speed) {
 	bird[0].position.z -= speed;
 	bird[1].position.z -= speed;
-	camera.position.z -= speed;
+    bird[2].position.z -= speed;
+    camera.position.z -= speed;
 }
 
 // 左偏
 function moveLeft(bird, speed) {
 	bird[0].position.x -= speed;
 	bird[1].position.x -= speed;
-	camera.position.x -= speed;
+    bird[2].position.x -= speed;
+
+    camera.position.x -= speed;
 }
 
 // 右偏
 function moveRight(bird, speed) {
 	bird[0].position.x += speed;
 	bird[1].position.x += speed;
-	camera.position.x += speed;
+    bird[2].position.x += speed;
+
+    camera.position.x += speed;
 }
 
 // 跳跃
 function jumpUp(bird, speed) {
 	bird[0].position.y += speed;
 	bird[1].position.y += speed;
-	camera.position.y += speed;
+    bird[2].position.y += speed;
+
+    camera.position.y += speed;
 }
 
 // 下降
@@ -103,8 +72,9 @@ function fallDown(bird) {
 	if (bird[1].position.y > -h) {
 		bird[0].position.y += h;
 		bird[1].position.y += h;
-		camera.position.y += h;
->>>>>>> fda726f845fbc6a1b7429953b3ac697b74c2e906
+        bird[2].position.y += h;
+
+        camera.position.y += h;
 	}
 }
 
@@ -112,5 +82,7 @@ function fallDown(bird) {
 function backToStartPoint(bird) {
 	bird[0].position.z = 0;
 	bird[1].position.z = 0;
-	camera.position.z = global.moving.camera.initZ;
+    bird[2].position.z = 0;
+
+    camera.position.z = global.moving.camera.initZ;
 }
