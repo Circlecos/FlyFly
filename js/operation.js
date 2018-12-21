@@ -1,10 +1,8 @@
 window.onkeydown = function(ev) {
+	preventDefaultEvents(ev);
+
 	var keychar = String.fromCharCode(ev.keyCode);
 	switch (keychar) {
-		case 'w':
-		case 'W':
-			up = true;
-			break;
 		case 'a':
 		case 'A':
 			left = true;
@@ -13,22 +11,16 @@ window.onkeydown = function(ev) {
 		case 'D':
 			right = true;
 			break;
-		case 's':
-		case 'S':
-			down = true;
-			break;
 		case ' ':
 			jump = true;
+			v = 0;
 			break;
 	}
 }
 window.onkeyup = function(ev) {
 	var keychar = String.fromCharCode(ev.keyCode);
+	
 	switch (keychar) {
-		case 'w':
-		case 'W':
-			up = false;
-			break;
 		case 'a':
 		case 'A':
 			left = false;
@@ -37,14 +29,19 @@ window.onkeyup = function(ev) {
 		case 'D':
 			right = false;
 			break;
-		case 's':
-		case 'S':
-			down = false;
-			break;
 		case ' ':
 			jump = false;
 			break;
 	}
 }
 
-
+function preventDefaultEvents(ev){
+	if (ev && ev.preventDefault){
+		//阻止默认浏览器动作(W3C) 
+		ev.preventDefault();
+	}	
+	else{
+		//IE中阻止函数器默认动作的方式 
+		window.event.returnValue = false;
+	}
+}
