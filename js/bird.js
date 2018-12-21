@@ -1,4 +1,5 @@
 // 新建鸟对象
+
 function initBird() {
 	var geometry = new THREE.CylinderGeometry( 50, 50, 100, 32 );
 	var material = new THREE.MeshPhongMaterial({
@@ -6,13 +7,25 @@ function initBird() {
 	});
 	var bird = new THREE.Mesh(geometry, material);
 	bird.position.y = 50;	
-	global.bird.birdObject = bird;
+	global.bird.birdObject[0]= bird;
+    global.bird.birdObject[1] = loadBirdModel();
 	scene.add(bird);
+	bird.visible = false;
 }
 
 
 // 装载鸟的模型
-function loadBirdModel(file) {
+function loadBirdModel() {
+    var objLoader = new THREE.OBJLoader();
+    objLoader.load(global.bird.birdModelFilePath + global.bird.birdModelFileName, function(object){
+        object.positon = 0, 0, 0;
+        object.scale.set(3, 3, 3);
+        global.bird.birdObject[1] = object;
+        rotateAroundVector(global.bird.birdObject[1], new THREE.Vector3(0, 1, 0), Math.PI);
+
+        scene.add(global.bird.birdObject[1]);
+    
+    });
 
 }
 

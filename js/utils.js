@@ -41,6 +41,7 @@ function rotateAroundVector(object, axis, radians) {
 	rotWorldMatrix.multiply(object.matrix); // pre-multiply
 	object.matrix = rotWorldMatrix;
 	object.rotation.setFromRotationMatrix(object.matrix);
+	object.updateMatrix();
 }
 
 /**

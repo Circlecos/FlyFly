@@ -1,7 +1,7 @@
 // 帧循环、游戏循环
 function animation() {
 	// 小鸟对象
-	var bird = global.bird.birdObject;
+	var bird = global.bird.birdObject[0];
 	// 其他对象
 	var object = global.object;
 	// 当前游戏全局设置
@@ -59,9 +59,12 @@ function drawNewMapObjects(bird, object, objectInfo) {
 		// 重新生成小鸟身后的水管
 		addPipe(index - 1, offset, height, gap);
 
+		console.log("birdPos",bird.position.z);
+		console.log("birdTruePos",global.bird.birdObject[1].position.z);
 		if (index == renderNum + 1) {
 			// 回到起点
 			bird.position.z = 0;
+			global.bird.birdObject[1].position.z = 0;
 			camera.position.z = global.moving.camera.initZ;
 		}
 	}

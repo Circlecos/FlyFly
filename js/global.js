@@ -1,7 +1,9 @@
 var global = {
 	bird: {
-		birdObject: null, // 鸟的对象
-		birdTextureFile: null, // 鸟的纹理文件
+		birdObject: [null,null], // 鸟的对象
+		birdModelFilePath: 'model/White_Eagle/', //鸟的模型路径
+		birdModelFileName: 'Eagle02_sale.obj', // 鸟的模型文件名
+		rotateAngle:[0,0,0] // 鸟的旋转角 x轴、y轴、z轴
 	},
 
 	system: {
