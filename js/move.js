@@ -3,7 +3,7 @@ var left = false;
 var right = false;
 var jump = false;
 
-var t = 0.1; // 时间
+var t = 0.025; // 时间
 var v = 0; // 上方向速度
 var g = -80; // 重力加速度加速度
 var a = 0; // 跳跃加速度
@@ -13,6 +13,7 @@ function moveEvent(bird) {
 	var forwardSpeed = global.moving.moveForwardSpeed;
 	var sideSpeed = global.moving.moveSideSpeed;
 	var jumpSpeed = global.moving.jumpSpeed;
+	var fallSpeed = global.moving.fallSpeed;
 	// todo: 1.修复moveEvent 2.添加鼠标实现的环视逻辑（可能）
 
 	if (forward) {
