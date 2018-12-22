@@ -3,17 +3,26 @@ var object = global.object;
 
 // 初始化场景
 function initMapObjects() {
-	initGrid();
+	initGround();
 	initWall();
 	initPipes();
 	initFlyOver();
 }
 
 // 初始化地面网格
-function initGrid() {
-	var ground = objectInfo.map.ground;
-	var grid = new THREE.GridHelper(ground[0], ground[1], 0x0000ff, 0x808080);
-	scene.add(grid);
+function initGround() {
+	var texture = new THREE.TextureLoader().load('img/textures/ground.jpg', function(texture) {});
+	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+	texture.repeat.set( 50, 50 );
+
+	var geometry = new THREE.PlaneGeometry(10000,wallDepth*2);
+	var material = new THREE.MeshBasicMaterial({
+		map: texture
+	});
+	var ground = new THREE.Mesh(geometry, material);
+	ground.rotation.x = -Math.PI/2;
+	scene.add(ground);
+	
 }
 
 // 初始化墙体
@@ -96,9 +105,12 @@ function createWall(x, y, z, dx, dy, dz) {
  */
 function createPipe(index, offset, height, posY) {
 	var roadWidth = objectInfo.map.roadWidth;
+	var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
+	// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+	
 	var geometry = new THREE.CylinderGeometry(roadWidth / 2, roadWidth / 2, height, 16);
 	var material = new THREE.MeshPhongMaterial({
-		color: 0x00FF00
+		map: texture
 	});
 	pipe = new THREE.Mesh(geometry, material);
 	setLocation(pipe, 0, posY, -index * objectInfo.pipe.distance + offset);

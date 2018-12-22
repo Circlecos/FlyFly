@@ -3,7 +3,7 @@ var left = false;
 var right = false;
 var jump = false;
 
-var t = 0.025; // 时间
+var t = 0.1; // 时间
 var v = 0; // 上方向速度
 var g = -80; // 重力加速度加速度
 var a = 0; // 跳跃加速度
@@ -35,7 +35,6 @@ function moveEvent(bird) {
 function moveForward(bird, speed) {
 	bird[0].position.z -= speed;
 	bird[1].position.z -= speed;
-    bird[2].position.z -= speed;
     camera.position.z -= speed;
 }
 
@@ -43,8 +42,6 @@ function moveForward(bird, speed) {
 function moveLeft(bird, speed) {
 	bird[0].position.x -= speed;
 	bird[1].position.x -= speed;
-    bird[2].position.x -= speed;
-
     camera.position.x -= speed;
 }
 
@@ -52,8 +49,6 @@ function moveLeft(bird, speed) {
 function moveRight(bird, speed) {
 	bird[0].position.x += speed;
 	bird[1].position.x += speed;
-    bird[2].position.x += speed;
-
     camera.position.x += speed;
 }
 
@@ -61,8 +56,6 @@ function moveRight(bird, speed) {
 function jumpUp(bird, speed) {
 	bird[0].position.y += speed;
 	bird[1].position.y += speed;
-    bird[2].position.y += speed;
-
     camera.position.y += speed;
 }
 
@@ -73,8 +66,6 @@ function fallDown(bird) {
 	if (bird[1].position.y > -h) {
 		bird[0].position.y += h;
 		bird[1].position.y += h;
-        bird[2].position.y += h;
-
         camera.position.y += h;
 	}
 }
@@ -83,7 +74,5 @@ function fallDown(bird) {
 function backToStartPoint(bird) {
 	bird[0].position.z = 0;
 	bird[1].position.z = 0;
-    bird[2].position.z = 0;
-
     camera.position.z = global.moving.camera.initZ;
 }

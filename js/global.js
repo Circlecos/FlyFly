@@ -1,6 +1,6 @@
 var global = {
 	bird: {
-		birdObject: [null,null, null], // 鸟的对象
+		birdObject: [null,null], // 鸟的对象
 		birdModelFilePath: 'model/White_Eagle/', //鸟的模型路径
 		birdModelFileName: 'Eagle02_sale.obj', // 鸟的模型文件名
 		rotateAngle:[0,0,0] // 鸟的旋转角 x轴、y轴、z轴
@@ -9,7 +9,7 @@ var global = {
 	system: {
 		time: 0, // 游戏已进行时间
 		score: 0, // 当前得分
-		pause: false, // 暂停按钮
+		pause: true, // 暂停按钮
 		historyTopScore: 0, // 历史最高得分
 	},
 
@@ -34,9 +34,9 @@ var global = {
 		pipe: {
 			minHeight: 500, // 底部水管最低高度
 			maxHeight: 2500, // 底部水管最高高度
-			minGap: 450, // 中间可通过的最小间隙
+			minGap: 500, // 中间可通过的最小间隙
 			maxGap: 1000, // 中间可通过的最大间隙
-			distance: 1750, // 水管之间的默认距离
+			distance: 1900, // 水管之间的默认距离
 			maxOffset: 350, // 水管相对固定位置的最大偏移量
 		},
 		// 小鸟的包围盒（暂定圆柱）
@@ -50,13 +50,13 @@ var global = {
 	moving: {
 		camera: {
 			initX: 2500, // 相机初始X坐标
-			initY: 1000, // 相机初始Y坐标
+			initY: 1750, // 相机初始Y坐标
 			initZ: 0, // 相机初始Z坐标
 		},
-		moveForwardSpeed: 10, // 前进速度
+		moveForwardSpeed: 15, // 前进速度
 		moveSideSpeed: 15, // 向左右移动速度
-		jumpSpeed: 10, // 跳跃速度
-		fallSpeed: 10, // 下降速度
+		jumpSpeed: 30, // 跳跃速度
+		fallSpeed: 15, // 下降速度
 	},
 
 	lights: {
