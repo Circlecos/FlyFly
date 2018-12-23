@@ -2,35 +2,20 @@ function initBird() {
 	var coverBox = createCoverBox();
 	global.bird.birdObject[1] = coverBox;
 	scene.add(coverBox);
-	coverBox.visible = false;
-	
+
 	loadBirdModel();
 }
 
-// 创建小鸟对象
-// function createBird() {
-// 	var geometry = new THREE.CylinderGeometry(150, 150, 200, 32);
-// 	var material = new THREE.MeshPhongMaterial({
-// 		color: 0xff0000
-// 	});
-// 
-// 	var bird = new THREE.Mesh(geometry, material);
-// 	bird.position.y = 1000;
-// 	scene.add(bird);
-// 	bird.visible = false;
-// 
-// 	return bird;
-// }
-
 // 创建包围盒对象
 function createCoverBox() {
-	var geometry = new THREE.CylinderGeometry(150, 150, 200, 32);
+	var geometry = new THREE.CylinderGeometry(150, 0, 200, 4);
 	var material = new THREE.MeshPhongMaterial({
 		color: 0xff0000
 	});
 
 	var box = new THREE.Mesh(geometry, material);
 	box.position.y = 1000;
+	box.visible = false;
 	return box;
 }
 
@@ -46,7 +31,6 @@ function loadBirdModel() {
 		scene.add(global.bird.birdObject[0]);
 		animation();
 	});
-
 }
 
 // 根据新坐标（形态）装载对应模型（可能）

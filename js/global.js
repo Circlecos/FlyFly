@@ -1,9 +1,9 @@
 var global = {
 	bird: {
-		birdObject: [null,null], // 鸟的对象
+		birdObject: [null, null], // 鸟的对象
 		birdModelFilePath: 'model/White_Eagle/', //鸟的模型路径
 		birdModelFileName: 'Eagle02_sale.obj', // 鸟的模型文件名
-		rotateAngle:[0,0,0] // 鸟的旋转角 x轴、y轴、z轴
+		rotateAngle: [0, 0, 0] // 鸟的旋转角 x轴、y轴、z轴
 	},
 
 	system: {
@@ -39,10 +39,11 @@ var global = {
 			distance: 1900, // 水管之间的默认距离
 			maxOffset: 350, // 水管相对固定位置的最大偏移量
 		},
-		// 小鸟的包围盒（暂定圆柱）
-		birdCoverBox: {
-			radius: 25, // 圆柱半径
-			height: 50, // 圆柱高度
+		// 奖励物
+		reward: {
+			possibility: 2, // 奖励物生成的可能性（possibility/10）
+			radius: 75, // 奖励物包围盒的半径（暂定圆柱）
+			height: 100, // 奖励物包围盒的高度（暂定圆柱）
 		}
 	},
 
@@ -50,7 +51,7 @@ var global = {
 	moving: {
 		camera: {
 			initX: 2500, // 相机初始X坐标
-			initY: 1750, // 相机初始Y坐标
+			initY: 1650, // 相机初始Y坐标
 			initZ: 0, // 相机初始Z坐标
 		},
 		moveForwardSpeed: 15, // 前进速度
@@ -63,3 +64,8 @@ var global = {
 		lightObjects: [], // 存储光线相关（可能使用）
 	}
 };
+
+// 场景对象参数信息
+var objectInfo = global.objectInfo;
+// 场景对象数组
+var object = global.object;

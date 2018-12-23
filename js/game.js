@@ -5,8 +5,8 @@
 // 4、终止
 
 var GAME_OVER = false;
-var score = 0;
 var SCORE_SPEED = 1;
+var score = 0;
 
 function updateCurrScore() {
 	score += SCORE_SPEED;
