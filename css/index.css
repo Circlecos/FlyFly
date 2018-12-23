@@ -23,3 +23,74 @@ span#currScore {
 span#historyTopScore {
 	color: orangered;
 }
+
+.shade{
+	width: 100%;
+	background-color: rgba(0,0,0,0.3);
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: none;
+}
+.menu{
+	background-color: #ffeb8d;
+	width: 240px;
+	padding: 20px;
+	line-height: 200%;
+	color: #f31b33;
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	border-radius: 0.6rem;
+	margin-left: -140px;
+	display: none;
+}
+.level{
+	background-color: #ffeb8d;
+	width: 240px;
+	padding: 20px;
+	line-height: 200%;
+	color: #f31b33;
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	border-radius: 0.6rem;
+	margin-left: -140px;
+	display: none;
+}
+.start{
+	width: 240px;
+	padding: 20px;
+	line-height: 200%;
+	color: #f31b33;
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	border-radius: 0.6rem;
+	margin-left: -140px;
+	display: block;
+}
+button{
+	background-color: white;
+	border: none;
+	color: black;
+	padding: 14px 14px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 14px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border: 1px solid #555555;
+	border-radius: 4px;
+	width: 80%;
+}
+button:hover {
+	background-color: #555555;
+	color: white;
+}
+#return{
+	color:black;
+}
