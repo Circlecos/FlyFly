@@ -63,3 +63,4 @@ var global = {
 		lightObjects: [], // 存储光线相关（可能使用）
 	}
 };
+var flag=false;

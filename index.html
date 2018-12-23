@@ -24,6 +24,21 @@
 		<script src="js/utils.js"></script>
 	</head>
 	<body onload="gameStart();">
+		<p class="shade"></p>
+		<div class="menu">
+		<button id="pause" onclick="pause()">暂停</button><br>
+		<button id="start" onclick="start()">开始</button><br>
+		<button id="choose" onclick="choose()">难度选择</button>
+		</div>
+		<div class="level">
+			<button id="hard">艰难</button>
+			<button id="normal">普通</button>
+			<button id="easy">简单</button>
+			<a href="javascript:ret()" id="return">返回</a>
+		</div>
+		<div class="start">
+			<button onclick="start()">开始游戏</button>
+		</div>
 		<div>
 			<h1 align="center">3d FlappyBird</h1>
 			<!-- todo : 设置按钮等游戏界面及其逻辑调用 -->

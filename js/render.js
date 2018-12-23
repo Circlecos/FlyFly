@@ -24,8 +24,10 @@ function animation() {
 
 		// 渲染当前帧并请求下一次渲染动作
 		if (!GAME_OVER) {
-			renderer.render(scene, camera);
-			requestAnimationFrame(animation);
+			if(flag==true){
+                renderer.render(scene, camera);
+                requestAnimationFrame(animation);
+			}
 		} else {
 			gameOver();
 		}
