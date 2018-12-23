@@ -8,14 +8,8 @@
 
 var webH = $(window).height();
 //按下"esc"键选择菜单
-document.onkeydown = function (event) {
-    var oEvent = window.event;
-    if (oEvent&&oEvent.keyCode == 27) {//显示遮罩
-        global.system.pause=false;
-        $(".shade,.menu").css("display","block");
-        $(".shade").height(webH);
-    }
-};
+
+
 
 function start(){
     global.system.pause=true;
@@ -93,7 +87,17 @@ function ret(){
     $(".level").css("display","none");
     $(".menu").css("display","block");
 }
-function initGUI(){
+$(window).keydown(function(e) {
+	if (e.keyCode == 27 || e.which.keyCode == 27) {
+		flag = false;
+		$(".shade,.menu").css("display", "block");
+		$(".shade").height(webH);
+	}
+});
+
+
+
+function initGUI() {
 	initScore();
 }
 
