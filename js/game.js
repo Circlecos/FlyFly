@@ -26,23 +26,27 @@ function collideRewards() {
 
 // 游戏终止逻辑
 function gameOver() {
-	var currScore = score;
-	var historyTopScore = global.system.historyTopScore;
-	var comment = "不要灰心，再接再厉！";
-	if (currScore > historyTopScore) {
-		comment = "打破记录，可喜可贺！";
-		updateHistoryTopScore();
-	}
-	var message = "游戏结束！\n";
-	message += ("本次得分：" + currScore + "\n");
-	message += ("历史最高分：" + historyTopScore + "\n");
-	message += ("评语：" + comment);
-	alert(message);
+	if (global.system.pause == true) {
+        global.system.pause = false;
 
-	// 重刷页面
-	setTimeout(function() {
-		window.location.reload();
-	}, 0);
+        var currScore = score;
+        var historyTopScore = global.system.historyTopScore;
+        var comment = "不要灰心，再接再厉！";
+        if (currScore > historyTopScore) {
+            comment = "打破记录，可喜可贺！";
+            updateHistoryTopScore();
+        }
+        var message = "游戏结束！\n";
+        message += ("本次得分：" + currScore + "\n");
+        message += ("历史最高分：" + historyTopScore + "\n");
+        message += ("评语：" + comment);
+        alert(message);
+
+        // 重刷页面
+        setTimeout(function () {
+            window.location.reload();
+        }, 0);
+    }
 }
 
 // 更新历史最高分

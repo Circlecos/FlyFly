@@ -11,21 +11,21 @@ var webH = $(window).height();
 document.onkeydown = function (event) {
     var oEvent = window.event;
     if (oEvent&&oEvent.keyCode == 27) {//显示遮罩
-        flag=false;
+        global.system.pause=false;
         $(".shade,.menu").css("display","block");
         $(".shade").height(webH);
     }
 };
 
 function start(){
-	flag=true;
+    global.system.pause=true;
 	//隐藏遮罩
     $(".shade,.menu,.start").css("display","none");
     $(".shade").height(0);
-	animation();
+    // animation();
 }
 function pause(){
-	flag=false;
+    global.system.pause=false;
     $(".shade,.menu").css("display","none");
     $(".shade").height(0);
 }
@@ -38,17 +38,17 @@ function choose(){
         global.objectInfo.pipe.istance=900; // 水管之间的默认距离
         $(".level").css("display","none");
         $(".shade").height(0);
-        flag=true;
-        animation();
+        global.system.pause=true;
+        // animation();
     });
-    $("#noraml").click(function () {
+    $("#normal").click(function () {
         global.objectInfo.pipe.minGap=500; // 中间可通过的最小间隙
         global.objectInfo.pipe.maxGap=1000; // 中间可通过的最大间隙
         global.objectInfo.pipe.istance=1900; // 水管之间的默认距离
         $(".level").css("display","none");
         $(".shade").height(0);
-        flag=true;
-        animation();
+        global.system.pause=true;
+        // animation();
     });
     $("#easy").click(function () {
         global.objectInfo.pipe.minGap=1000; // 中间可通过的最小间隙
@@ -56,9 +56,38 @@ function choose(){
         global.objectInfo.pipe.istance=2500; // 水管之间的默认距离
         $(".level").css("display","none");
         $(".shade").height(0);
-        flag=true;
-        animation();
+        global.system.pause=true;
+        // animation();
     });
+}
+function chooselevel(lev){
+	switch (lev){
+		case 0://easy
+            global.objectInfo.pipe.minGap=1000; // 中间可通过的最小间隙
+            global.objectInfo.pipe.maxGap=1500; // 中间可通过的最大间隙
+            global.objectInfo.pipe.istance=2500; // 水管之间的默认距离
+			$("#lev0").css("color","black");
+            $("#lev1").css("color","gray");
+            $("#lev2").css("color","gray");
+			break;
+		case 1://normal
+            global.objectInfo.pipe.minGap=500; // 中间可通过的最小间隙
+            global.objectInfo.pipe.maxGap=1000; // 中间可通过的最大间隙
+            global.objectInfo.pipe.istance=1900; // 水管之间的默认距离
+            $("#lev0").css("color","gray");
+            $("#lev1").css("color","black");
+            $("#lev2").css("color","gray");
+			break;
+		case 2://hard
+            global.objectInfo.pipe.minGap=300; // 中间可通过的最小间隙
+            global.objectInfo.pipe.maxGap=500; // 中间可通过的最大间隙
+            global.objectInfo.pipe.istance=900; // 水管之间的默认距离
+            $("#lev0").css("color","gray");
+            $("#lev1").css("color","gray");
+            $("#lev2").css("color","black");
+			break;
+	}
+    initPipes();
 }
 function ret(){
     $(".level").css("display","none");

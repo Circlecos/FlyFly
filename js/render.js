@@ -23,14 +23,14 @@ function animation() {
 
 		// 渲染当前帧并请求下一次渲染动作
 		if (!GAME_OVER) {
-			if(flag==true){
-                renderer.render(scene, camera);
-                requestAnimationFrame(animation);
-			}
+			renderer.render(scene, camera);
+
 		} else {
 			gameOver();
 		}
+
 	}
+    requestAnimationFrame(animation);
 }
 
 // 碰撞检测

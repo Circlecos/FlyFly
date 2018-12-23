@@ -63,7 +63,7 @@ span#historyTopScore {
 	width: 240px;
 	padding: 20px;
 	line-height: 200%;
-	color: #f31b33;
+	color: black;
 	position: fixed;
 	top: 20%;
 	left: 50%;
@@ -86,7 +86,7 @@ button{
 	cursor: pointer;
 	border: 1px solid #555555;
 	border-radius: 4px;
-	/*width: 80%;*/
+	width: 80%;
 }
 button:hover {
 	background-color: #555555;
@@ -107,19 +107,19 @@ button:hover {
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
-	margin: 14px;
+	margin-bottom: 0px;
 	-webkit-transition-duration: 0.4s; /* Safari */
 	transition-duration: 0.4s;
 	cursor: pointer;
 	border: 1px solid #555555;
 	border-radius: 4px;
-	/*width: 80%;*/
+	width: 80%;
 }
 
 /* 容器 <div> - 需要定位下拉内容 */
 .dropdown {
 	position: relative;
-	display: inline-block;
+	display: block;
 }
 
 /* 下拉内容 (默认隐藏) */
@@ -129,11 +129,12 @@ button:hover {
 	background-color: #f9f9f9;
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	margin-left:17%;
 }
 
 /* 下拉菜单的链接 */
 .dropdown-content a {
-	color: black;
+	color: gray;
 	padding: 12px 16px;
 	text-decoration: none;
 	display: block;
@@ -152,3 +153,4 @@ button:hover {
 	background-color: #555555;
 	color: white;
 }
+
