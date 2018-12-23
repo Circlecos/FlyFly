@@ -89,7 +89,7 @@ function ret(){
 }
 $(window).keydown(function(e) {
 	if (e.keyCode == 27 || e.which.keyCode == 27) {
-		flag = false;
+		global.system.pause=false;
 		$(".shade,.menu").css("display", "block");
 		$(".shade").height(webH);
 	}
