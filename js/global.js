@@ -34,7 +34,7 @@ var global = {
 		pipe: {
 			minHeight: 500, // 底部水管最低高度
 			maxHeight: 2500, // 底部水管最高高度
-			minGap: 500, // 中间可通过的最小间隙
+			minGap: 1000, // 中间可通过的最小间隙
 			maxGap: 1000, // 中间可通过的最大间隙
 			distance: 1900, // 水管之间的默认距离
 			maxOffset: 350, // 水管相对固定位置的最大偏移量
