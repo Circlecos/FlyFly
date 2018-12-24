@@ -4,19 +4,20 @@ var global = {
 			trueBird: [], // 鸟的对象
 			coverBox: null, // 鸟的包围盒
 		},
-		birdModelFilePath: [//鸟的模型路径
+		birdModelFilePath: [ //鸟的模型路径
 			'model/White_Eagle/lower/',
 			'model/White_Eagle/normal/',
 			'model/White_Eagle/upper/',
-			'model/White_Eagle/more_upper/'], 
-		birdObjFileName:[// 鸟的obj文件名
+			'model/White_Eagle/more_upper/'
+		],
+		birdObjFileName: [ // 鸟的obj文件名
 			'WhiteEagle_lower.obj',
 			'WhiteEagle_normal.obj',
 			"WhiteEagle_upper.obj",
 			"WhiteEagle_moreUpper.obj",
-		], 
+		],
 		rotateAngle: [0, 0, 0], // 鸟的旋转角 x轴、y轴、z轴
-		shapeModelIndex:0,
+		shapeModelIndex: 0,
 	},
 
 	system: {
@@ -31,6 +32,8 @@ var global = {
 	object: {
 		pipeArray: [], // 存储水管对象的数组
 		rewardArray: [], // 存储奖励物对象的数组
+						 // rewardArray[2*index] 奖励物本体对象
+						 // rewardArray[2*index + 1] 奖励物包围盒对象
 		wallArray: [], // 存储两侧墙体对象的数组
 		flyOver: [], // 记录小鸟最近飞过的水管
 	},
@@ -57,6 +60,8 @@ var global = {
 			possibility: 2, // 奖励物生成的可能性（possibility/10）
 			radius: 75, // 奖励物包围盒的半径（暂定圆柱）
 			height: 100, // 奖励物包围盒的高度（暂定圆柱）
+			rewardModelFilePath: "", // 奖励物模型文件路径
+			rewardModelFileName: "", // 奖励物模型文件名
 		}
 	},
 

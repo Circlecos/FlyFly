@@ -150,14 +150,15 @@ function removePipe(index) {
 	object.pipeArray[index * 2 + 1] = null;
 }
 
-function createReward() {
+function createRewardCoverBox() {
 	var reward = objectInfo.reward;
 	var geometry = new THREE.CylinderBufferGeometry(reward.radius, reward.radius, reward.height, 4);
 	var material = new THREE.MeshBasicMaterial({
 		color: 0xffff00
 	});
 	var reward = new THREE.Mesh(geometry, material);
-	
-	
+}
+
+function createReward() {
 	
 }
