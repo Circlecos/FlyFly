@@ -33,29 +33,33 @@ function moveEvent(bird) {
 
 // 前进
 function moveForward(bird, speed) {
-	bird[0].position.z -= speed;
-	bird[1].position.z -= speed;
+	bird.coverBox.position.z -= speed;
+	for (var i= 0; i<(bird.trueBird).length;i++)
+		bird.trueBird[i].position.z -= speed;
     camera.position.z -= speed;
 }
 
 // 左偏
 function moveLeft(bird, speed) {
-	bird[0].position.x -= speed;
-	bird[1].position.x -= speed;
+	bird.coverBox.position.x -= speed;
+	for (var i= 0; i<(bird.trueBird).length;i++)
+		bird.trueBird[i].position.x -= speed;
     camera.position.x -= speed;
 }
 
 // 右偏
 function moveRight(bird, speed) {
-	bird[0].position.x += speed;
-	bird[1].position.x += speed;
+	bird.coverBox.position.x += speed;
+	for (var i= 0; i<(bird.trueBird).length;i++)
+		bird.trueBird[i].position.x += speed;;
     camera.position.x += speed;
 }
 
 // 跳跃
 function jumpUp(bird, speed) {
-	bird[0].position.y += speed;
-	bird[1].position.y += speed;
+	bird.coverBox.position.y += speed;
+	for (var i= 0; i<(bird.trueBird).length;i++)
+		bird.trueBird[i].position.y += speed;
     camera.position.y += speed;
 }
 
@@ -63,16 +67,18 @@ function jumpUp(bird, speed) {
 function fallDown(bird) {
 	var h = v * t + g * t * t / 2;
 	v = v + g * t;
-	if (bird[1].position.y > -h) {
-		bird[0].position.y += h;
-		bird[1].position.y += h;
+	if (bird.coverBox.position.y > -h) {		
+		for (var i= 0; i<(bird.trueBird).length;i++)
+			bird.trueBird[i].position.y += h;
+		bird.coverBox.position.y += h;
         camera.position.y += h;
 	}
 }
 
 // 回到起点
 function backToStartPoint(bird) {
-	bird[0].position.z = 0;
-	bird[1].position.z = 0;
+	bird.coverBox.position.z = 0;
+	for (var i= 0; i<(bird.trueBird).length;i++)
+			bird.trueBird[i].position.z = 0;
     camera.position.z = global.moving.camera.initZ;
 }

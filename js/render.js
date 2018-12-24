@@ -6,6 +6,13 @@ function animation() {
 	if (global.system.pause) {
 		// 系统时间
 		global.system.time++;
+
+		// 修改鸟的形态（可见性）
+		if (global.system.time % 6 ==0){
+			modifyBirdModelvisibility();
+		}
+		
+
 		// 小鸟对象
 		var bird = global.bird.birdObject;
 
@@ -40,7 +47,7 @@ function checkCollision(bird) {
 		return;
 	}
 	var pipeArray = object.pipeArray;
-	var ret = collision(bird[1], pipeArray);
+	var ret = collision(bird.coverBox, pipeArray);
 	if (ret) {
 		GAME_OVER = true;
 	}
@@ -54,7 +61,7 @@ function drawNewMapObjects(bird) {
 	// 最多能看到的水管个数
 	var renderNum = objectInfo.map.renderNum;
 	// 小鸟当前位置
-	var pos = -bird[1].position.z;
+	var pos = -bird.coverBox.position.z;
 	// 水管之间的默认距离
 	var dist = pipe.distance;
 	// 小鸟当前飞过第index个水管
@@ -78,8 +85,9 @@ function drawNewMapObjects(bird) {
 
 		if (index == renderNum + 1) {
 			// 回到起点
-			bird[0].position.z = 0;
-			bird[1].position.z = 0;
+			bird.coverBox.position.z = 0;
+			for (var i= 0; i<(bird.trueBird).length;i++)
+				bird.trueBird[i].position.z = 0;
 			camera.position.z = global.moving.camera.initZ;
 			backToStartPoint(bird);
 		}

@@ -1,9 +1,22 @@
 var global = {
 	bird: {
-		birdObject: [null, null], // 鸟的对象
-		birdModelFilePath: 'model/White_Eagle/', //鸟的模型路径
-		birdModelFileName: 'Eagle02_sale.obj', // 鸟的模型文件名
-		rotateAngle: [0, 0, 0] // 鸟的旋转角 x轴、y轴、z轴
+		birdObject: {
+			trueBird: [], // 鸟的对象
+			coverBox: null, // 鸟的包围盒
+		},
+		birdModelFilePath: [//鸟的模型路径
+			'model/White_Eagle/lower/',
+			'model/White_Eagle/normal/',
+			'model/White_Eagle/upper/',
+			'model/White_Eagle/more_upper/'], 
+		birdObjFileName:[// 鸟的obj文件名
+			'WhiteEagle_lower.obj',
+			'WhiteEagle_normal.obj',
+			"WhiteEagle_upper.obj",
+			"WhiteEagle_moreUpper.obj",
+		], 
+		rotateAngle: [0, 0, 0], // 鸟的旋转角 x轴、y轴、z轴
+		shapeModelIndex:0,
 	},
 
 	system: {
