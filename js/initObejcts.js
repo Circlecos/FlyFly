@@ -122,19 +122,22 @@ function addPipe(index, offset, height, gap) {
 	// 底部水管
 	var bottomPipe = createPipe(index, offset, height, height / 2);
 	object.pipeArray[index * 2] = bottomPipe;
-	
+
 	// 顶部水管
 	var topPipeHeight = wallHeight - height - gap;
 	var topPipe = createPipe(index, offset, topPipeHeight, wallHeight - topPipeHeight / 2);
 	object.pipeArray[index * 2 + 1] = topPipe;
-	
+
 	// 奖励物
-	
-	
+	if (randomNum(1, 10) <= objectInfo.reward.possibility) {
+		addReward(index, offset, height, gap);
+	}
+
+
 	// 添加至场景
 	scene.add(bottomPipe);
 	scene.add(topPipe);
-	
+
 	return [bottomPipe, topPipe];
 }
 
@@ -150,15 +153,41 @@ function removePipe(index) {
 	object.pipeArray[index * 2 + 1] = null;
 }
 
-function createRewardCoverBox() {
+
+
+function createRewardCoverBox(index, offset, posY) {
 	var reward = objectInfo.reward;
-	var geometry = new THREE.CylinderBufferGeometry(reward.radius, reward.radius, reward.height, 4);
+	var geometry = new THREE.CylinderGeometry(reward.radius, reward.radius, reward.height, 4);
 	var material = new THREE.MeshBasicMaterial({
-		color: 0xffff00
+		color: 0xff0000
 	});
-	var reward = new THREE.Mesh(geometry, material);
+	var box = new THREE.Mesh(geometry, material);
+	setLocation(box, 0, posY, -index * objectInfo.pipe.distance + offset);
+	return box;
 }
 
 function createReward() {
 	
+}
+
+function addReward(index, offset, pipeHeight, pipeGap) {
+	var reward = objectInfo.reward;
+	// 先移除该位置原来的奖励物
+	removeReward(index);
+	
+	var rewardCoverBox = createRewardCoverBox(index, offset, randomNum(pipeHeight+reward.height, pipeHeight+pipeGap-reward.height));
+	object.rewardArray[index * 2 + 1] = rewardCoverBox;
+	scene.add(rewardCoverBox);
+}
+
+// 移除下标index处的奖励物
+function removeReward(index) {
+	// 奖励物本体
+	var reward = object.rewardArray[index * 2];
+	scene.remove(reward);
+	object.rewardArray[index * 2] = null;
+	// 奖励物包围盒
+	var rewardCoverBox = object.rewardArray[index * 2 + 1];
+	scene.remove(rewardCoverBox);
+	object.rewardArray[index * 2 + 1] = null;
 }

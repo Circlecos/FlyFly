@@ -57,7 +57,7 @@ var global = {
 		},
 		// 奖励物
 		reward: {
-			possibility: 2, // 奖励物生成的可能性（possibility/10）
+			possibility: 8, // 奖励物生成的可能性（possibility/10）
 			radius: 75, // 奖励物包围盒的半径（暂定圆柱）
 			height: 100, // 奖励物包围盒的高度（暂定圆柱）
 			rewardModelFilePath: "", // 奖励物模型文件路径
