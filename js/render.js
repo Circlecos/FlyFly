@@ -1,39 +1,40 @@
 // 帧循环、游戏循环
 function animation() {
+	// 强制渲染第一次
 	renderer.render(scene, camera);
+
 	if (global.system.pause) {
+		// 系统时间
 		global.system.time++;
 		// 小鸟对象
 		var bird = global.bird.birdObject;
-		// 其他对象
-		var object = global.object;
-		// 当前游戏全局设置
-		var objectInfo = global.objectInfo;
 
 		// 移动事件
 		moveEvent(bird);
 
 		// 碰撞检测
-		checkCollision(bird, object);
+		checkCollision(bird);
 
 		// 更新并显示当前得分
 		updateCurrScore();
 
 		// 绘制新的障碍物和奖励物
-		drawNewMapObjects(bird, object, objectInfo);
+		drawNewMapObjects(bird);
 
 		// 渲染当前帧并请求下一次渲染动作
 		if (!GAME_OVER) {
 			renderer.render(scene, camera);
-			requestAnimationFrame(animation);
+
 		} else {
 			gameOver();
 		}
+
 	}
+    requestAnimationFrame(animation);
 }
 
 // 碰撞检测
-function checkCollision(bird, object) {
+function checkCollision(bird) {
 	if (global.system.time < 10) {
 		// 奇怪的bug：游戏一开始，小鸟会默认和一个远处的物体碰撞
 		return;
@@ -48,7 +49,7 @@ function checkCollision(bird, object) {
 // 绘制新的障碍物和奖励物并处理循环逻辑
 // 当遇到最后`globalInfo.mapObject.renderNum`个障碍物时额外渲染
 // 通过最后一个障碍物后将场景拉回 循环位置（假设为新关卡（可能））
-function drawNewMapObjects(bird, object, objectInfo) {
+function drawNewMapObjects(bird) {
 	var pipe = objectInfo.pipe;
 	// 最多能看到的水管个数
 	var renderNum = objectInfo.map.renderNum;
@@ -74,7 +75,7 @@ function drawNewMapObjects(bird, object, objectInfo) {
 		index == 1 ? flyOver[renderNum + 1] = false : flyOver[index - 1] = false;
 		// 重新生成小鸟身后的水管
 		addPipe(index - 1, offset, height, gap);
-		
+
 		if (index == renderNum + 1) {
 			// 回到起点
 			bird[0].position.z = 0;

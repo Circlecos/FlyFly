@@ -24,6 +24,30 @@
 		<script src="js/utils.js"></script>
 	</head>
 	<body onload="gameStart();">
+		<p class="shade"></p>
+		<div class="menu">
+		<button id="pause" onclick="pause()">暂停</button><br>
+		<button id="start" onclick="start()">开始</button><br>
+		<button id="choose" onclick="choose()">难度选择</button>
+		</div>
+		<div class="level">
+			<button id="hard">艰难</button>
+			<button id="normal">普通</button>
+			<button id="easy">简单</button>
+			<a href="javascript:ret()" id="return">返回</a>
+		</div>
+		<div class="start" style="text-align: center">
+			<button onclick="start()">开始游戏</button>
+			<div class="dropdown">
+				<button class="dropbtn">难度选择</button>
+				<div class="dropdown-content">
+					<a href="javascript:chooselevel(2)" id="lev2">艰难</a>
+					<a href="javascript:chooselevel(1)" id="lev1">普通</a>
+					<a href="javascript:chooselevel(0)" id="lev0">简单</a>
+				</div>
+			</div>
+			<p>帮助：按空格键控制小鸟飞行高度 按ESC键召唤菜单</p>
+		</div>
 		<div>
 			<h1 align="center">3d FlappyBird</h1>
 			<!-- todo : 设置按钮等游戏界面及其逻辑调用 -->

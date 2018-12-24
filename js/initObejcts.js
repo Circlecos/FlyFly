@@ -1,6 +1,3 @@
-var objectInfo = global.objectInfo;
-var object = global.object;
-
 // 初始化场景
 function initMapObjects() {
 	initGround();
@@ -9,26 +6,25 @@ function initMapObjects() {
 	initFlyOver();
 }
 
+// 墙体参数
+var wallWidth = 50;
+var wallHeight = 5000;
+var wallDepth = 15000;
+
 // 初始化地面网格
 function initGround() {
 	var texture = new THREE.TextureLoader().load('img/textures/ground.jpg', function(texture) {});
 	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-	texture.repeat.set( 50, 50 );
+	texture.repeat.set(50, 50);
 
-	var geometry = new THREE.PlaneGeometry(10000,wallDepth*2);
+	var geometry = new THREE.PlaneGeometry(10000, wallDepth * 2);
 	var material = new THREE.MeshBasicMaterial({
 		map: texture
 	});
 	var ground = new THREE.Mesh(geometry, material);
-	ground.rotation.x = -Math.PI/2;
+	ground.rotation.x = -Math.PI / 2;
 	scene.add(ground);
-	
 }
-
-// 初始化墙体
-var wallWidth = 50;
-var wallHeight = 5000;
-var wallDepth = 15000;
 
 function initWall() {
 	var roadWidth = objectInfo.map.roadWidth;
@@ -107,7 +103,7 @@ function createPipe(index, offset, height, posY) {
 	var roadWidth = objectInfo.map.roadWidth;
 	var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
 	// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-	
+
 	var geometry = new THREE.CylinderGeometry(roadWidth / 2, roadWidth / 2, height, 16);
 	var material = new THREE.MeshPhongMaterial({
 		map: texture
@@ -117,9 +113,8 @@ function createPipe(index, offset, height, posY) {
 	return pipe;
 }
 
-// 添加水管到场景中
+// 添加水管及奖励物到场景中
 function addPipe(index, offset, height, gap) {
-	var object = global.object;
 	// 先移除该位置原来的水管
 	removePipe(index);
 
@@ -127,29 +122,42 @@ function addPipe(index, offset, height, gap) {
 	// 底部水管
 	var bottomPipe = createPipe(index, offset, height, height / 2);
 	object.pipeArray[index * 2] = bottomPipe;
-	scene.add(bottomPipe);
+	
 	// 顶部水管
 	var topPipeHeight = wallHeight - height - gap;
 	var topPipe = createPipe(index, offset, topPipeHeight, wallHeight - topPipeHeight / 2);
 	object.pipeArray[index * 2 + 1] = topPipe;
+	
+	// 奖励物
+	
+	
+	// 添加至场景
+	scene.add(bottomPipe);
 	scene.add(topPipe);
-
+	
 	return [bottomPipe, topPipe];
 }
 
 // 移除下标index处的水管
 function removePipe(index) {
-	var object = global.object;
-
+	// 底部水管
 	var bottomPipe = object.pipeArray[index * 2];
 	scene.remove(bottomPipe);
 	object.pipeArray[index * 2] = null;
-
+	// 顶部水管
 	var topPipe = object.pipeArray[index * 2 + 1];
 	scene.remove(topPipe);
 	object.pipeArray[index * 2 + 1] = null;
 }
 
 function createReward() {
-
+	var reward = objectInfo.reward;
+	var geometry = new THREE.CylinderBufferGeometry(reward.radius, reward.radius, reward.height, 4);
+	var material = new THREE.MeshBasicMaterial({
+		color: 0xffff00
+	});
+	var reward = new THREE.Mesh(geometry, material);
+	
+	
+	
 }
