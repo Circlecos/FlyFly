@@ -165,6 +165,43 @@ function createPipe(index, offset, height, posY) {
 	return pipe;
 }
 
+function createReward(index, offset, posY) {
+	/*
+	var reward = objectInfo.reward;
+	var texture = new THREE.TextureLoader().load('img/textures/coin.png', function(texture) {});
+	var geometry = new THREE.CubeGeometry(200,200,200)
+	var material = new THREE.MeshPhongMaterial({
+		map: texture
+	});
+	var rewards = new THREE.Mesh(geometry, material);
+	setLocation(rewards, 0, posY, -index * objectInfo.pipe.distance + offset);
+	return rewards;*/
+	
+
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath('model/Gift_Box/');
+	mtlLoader.load('BOX.mtl', function (materials){
+			materials.preload();
+
+			var objLoader = new THREE.OBJLoader();
+			objLoader.setMaterials(materials);
+			var object = objLoader.load(
+				global.reward.rewardModelFilePath[index] +
+				global.reward.rewardObjFileName[index],
+				function(object) {
+					console.log("The model path: "+ global.reward.rewardModelFilePath[index] +
+					global.reward.rewardObjFileName[index]);
+					
+					object.position.set(0, 900, -38);
+					object.scale.set(15, 15, 15);
+					global.object.reward.trueRewardArray.push(object);
+
+					scene.add(global.object.reward.trueRewardArray[index], 0, posY, -index * objectInfo.pipe.distance + offset);
+					initBird();
+		});
+	});
+	return mtlLoader;
+}
 
 
 // 添加一个奖励物至场景中
@@ -174,14 +211,16 @@ function addReward(index, offset, posY) {
 	removeReward(index);
 
 	// 奖励物包围盒
+	/*
 	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
 	object.reward.coverBoxArray[index] = rewardCoverBox;
 	scene.add(rewardCoverBox);
-
+*/
+	var rewards = createReward(index, offset, posY);
 	// 奖励物本体
 	// todo
 
-	return rewardCoverBox;
+	return rewards;
 }
 
 // 移除下标index处的奖励物

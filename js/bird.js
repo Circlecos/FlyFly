@@ -51,7 +51,7 @@ function loadBirdModel(index) {
 				loadBirdModel(index + 1);
 			} else {
 				global.bird.birdObject.trueBird[0].visible = true;
-				animation();
+
 			}
 		});
 	

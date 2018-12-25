@@ -47,4 +47,5 @@ function gameStart() {
 	initGUI();
 	initMapObjects();
 	initBird();
+	animation();
 }
