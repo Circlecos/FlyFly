@@ -55,7 +55,7 @@ function initPipes() {
 	emptyPipe[0].visible = false;
 	emptyPipe[1].visible = false;
 	// 在起点添加一个看不见的奖励物以保证pipeArray数组能够进行碰撞检测
-	emptyReward = addReward(0, 0, 0);
+	var emptyReward = addReward(0, 0, 0);
 	emptyReward.visible = false;
 	for (var index = 1; index <= objectInfo.map.renderNum; index++) {
 		var offset = randomNum(-pipe.maxOffset, pipe.maxOffset);
