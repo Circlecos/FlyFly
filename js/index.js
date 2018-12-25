@@ -30,11 +30,7 @@ function initCamera() {
 	camera.up.x = 0;
 	camera.up.y = 1;
 	camera.up.z = 0;
-	camera.lookAt({
-		x: -1,
-		y: 1000,
-		z: 0
-	});
+	camera.lookAt(-1, 1000, 0);
 }
 
 // 初始化场景

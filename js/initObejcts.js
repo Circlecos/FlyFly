@@ -130,7 +130,7 @@ function addPipe(index, offset, height, gap) {
 
 	// 奖励物
 	if (randomNum(1, 10) <= objectInfo.reward.possibility) {
-		addReward(index, offset, height, gap);
+		//addReward(index, offset, height, gap);
 	}
 
 

@@ -22,15 +22,22 @@ function createCoverBox() {
 // 装载鸟的模型
 function loadBirdModel(index) {
 	var birdTrueModelCount = (global.bird.birdObjFileName).length;
+	
+	// var mtlLoader = new THREE.MTLLoader();
+
+	// mtlLoader.setPath('model/White_Eagle/lower/');
+	// mtlLoader.load('WhiteEagle_lower.mtl', function (materials){
+	// 	materials.preload();
 		
 	var objLoader = new THREE.OBJLoader();
+	// objLoader.setMaterials(materials);
 	var object = objLoader.load(
 		global.bird.birdModelFilePath[index] 
 		+ global.bird.birdObjFileName[index], 
 		function(object) {
 			console.log("The model path: "+ global.bird.birdModelFilePath[index] 
 			+ global.bird.birdObjFileName[index]);
-	
+			
 			object.position.set(0, 900, -38);
 			object.scale.set(15, 15, 15);
 			global.bird.birdObject.trueBird.push(object);
@@ -46,7 +53,10 @@ function loadBirdModel(index) {
 				animation();
 			}
 		});
+	
+	// });
 
+	
 }
 
 
