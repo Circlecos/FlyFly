@@ -47,4 +47,9 @@ function gameStart() {
 	initGUI();
 	initMapObjects();
 	initBird();
+
+	// 强制渲染第一次(将监听准备完成事件)
+	renderer.render(scene, camera);
+
+	animation();
 }

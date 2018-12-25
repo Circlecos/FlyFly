@@ -1,17 +1,17 @@
+
 // 帧循环、游戏循环
 function animation() {
-	// 强制渲染第一次
-	renderer.render(scene, camera);
-
 	if (global.system.pause) {
 		// 系统时间
 		global.system.time++;
-
+		
 		// 修改鸟的形态（可见性）
 		if (global.system.time % 6 == 0) {
 			modifyBirdModelvisibility();
 		}
-
+		if (global.system.time % 20 == 0) {
+			console.log("time:", global.system.time);
+		}
 
 		// 小鸟对象
 		var bird = global.bird.birdObject;
