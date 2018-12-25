@@ -8,10 +8,10 @@ function animation() {
 		global.system.time++;
 
 		// 修改鸟的形态（可见性）
-		if (global.system.time % 6 ==0){
+		if (global.system.time % 6 == 0) {
 			modifyBirdModelvisibility();
 		}
-		
+
 
 		// 小鸟对象
 		var bird = global.bird.birdObject;
@@ -37,7 +37,7 @@ function animation() {
 		}
 
 	}
-    requestAnimationFrame(animation);
+	requestAnimationFrame(animation);
 }
 
 // 碰撞检测
@@ -46,10 +46,17 @@ function checkCollision(bird) {
 		// 奇怪的bug：游戏一开始，小鸟会默认和一个远处的物体碰撞
 		return;
 	}
-	var pipeArray = object.pipeArray;
-	var ret = collision(bird.coverBox, pipeArray);
-	if (ret) {
+	
+	// 水管碰撞检测
+	var pipe = collision(bird.coverBox, object.pipeArray);
+	if (pipe) {
 		GAME_OVER = true;
+	}
+	
+	// 奖励物碰撞检测
+	var reward = collision(bird.coverBox, object.reward.coverBoxArray);
+	if (reward) {
+		console.log("奖励物");
 	}
 }
 
@@ -58,6 +65,7 @@ function checkCollision(bird) {
 // 通过最后一个障碍物后将场景拉回 循环位置（假设为新关卡（可能））
 function drawNewMapObjects(bird) {
 	var pipe = objectInfo.pipe;
+	var reward = objectInfo.reward;
 	// 最多能看到的水管个数
 	var renderNum = objectInfo.map.renderNum;
 	// 小鸟当前位置
@@ -70,23 +78,31 @@ function drawNewMapObjects(bird) {
 	var flyOver = object.flyOver;
 
 	if (index >= 1 && !flyOver[index]) {
+		console.log(object.reward.coverBoxArray)
 		// 水管的随机参数
 		var offset = randomNum(-pipe.maxOffset, pipe.maxOffset);
 		var height = randomNum(pipe.minHeight, pipe.maxHeight);
 		var gap = randomNum(pipe.minGap, pipe.maxGap);
+		// 奖励物的随机位置
+		var posY = randomNum(height + reward.height / 2, height +
+			gap - reward.height / 2);
 		// 生成水管到下标index+num处
 		addPipe(index + renderNum, offset, height, gap);
+		// 同时生成下标index+num处的奖励物
+		addReward(index + renderNum, offset, posY);
 		// 标注小鸟已经飞过index处的水管
 		flyOver[index] = true;
 		// 小鸟上一个飞过的水管标注为[未飞过]状态
 		index == 1 ? flyOver[renderNum + 1] = false : flyOver[index - 1] = false;
 		// 重新生成小鸟身后的水管
 		addPipe(index - 1, offset, height, gap);
+		// 同时重新生成小鸟身后水管的奖励物
+		addReward(index - 1, offset, posY);
 
 		if (index == renderNum + 1) {
 			// 回到起点
 			bird.coverBox.position.z = 0;
-			for (var i= 0; i<(bird.trueBird).length;i++)
+			for (var i = 0; i < (bird.trueBird).length; i++)
 				bird.trueBird[i].position.z = 0;
 			camera.position.z = global.moving.camera.initZ;
 			backToStartPoint(bird);

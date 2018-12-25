@@ -31,9 +31,9 @@ var global = {
 	// 游戏对象数组
 	object: {
 		pipeArray: [], // 存储水管对象的数组
-		reward:{
+		reward: {
 			trueRewardArray: [], // 存储奖励物对象的数组
-			coverBoxAraay:[],// 存储奖励物包围盒的数组
+			coverBoxArray: [], // 存储奖励物包围盒的数组
 		},
 		wallArray: [], // 存储两侧墙体对象的数组
 		flyOver: [], // 记录小鸟最近飞过的水管
@@ -58,9 +58,9 @@ var global = {
 		},
 		// 奖励物
 		reward: {
-			possibility: 2, // 奖励物生成的可能性（possibility/10）
-			radius: 75, // 奖励物包围盒的半径（暂定圆柱）
-			height: 100, // 奖励物包围盒的高度（暂定圆柱）
+			possibility: 4, // 奖励物生成的可能性（possibility/10）
+			radius: 55, // 奖励物包围盒的半径（暂定圆柱）
+			height: 85, // 奖励物包围盒的高度（暂定圆柱）
 			rewardModelFilePath: "", // 奖励物模型文件路径
 			rewardModelFileName: "", // 奖励物模型文件名
 		}
@@ -77,6 +77,7 @@ var global = {
 		moveSideSpeed: 15, // 向左右移动速度
 		jumpSpeed: 30, // 跳跃速度
 		fallSpeed: 15, // 下降速度
+		headRiseSpeed: Math.PI / 720, // 抬头速度（度/帧）
 	},
 
 	lights: {

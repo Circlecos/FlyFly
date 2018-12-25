@@ -46,18 +46,26 @@ function initWall() {
 	scene.add(topWall);
 }
 
-// 初始化水管障碍物
+// 初始化水管障碍物及奖励物
 function initPipes() {
 	var pipe = objectInfo.pipe;
+	var reward = objectInfo.reward;
 	// 在起点添加一个看不见的水管以保证pipeArray数组能够进行碰撞检测
-	var emptyObject = addPipe(0, 0, 0, 0);
-	emptyObject[0].visible = false;
-	emptyObject[1].visible = false;
+	var emptyPipe = addPipe(0, 0, 0, 0);
+	emptyPipe[0].visible = false;
+	emptyPipe[1].visible = false;
+	// 在起点添加一个看不见的奖励物以保证pipeArray数组能够进行碰撞检测
+	emptyReward = addReward(0, 0, 0);
+	emptyReward.visible = false;
 	for (var index = 1; index <= objectInfo.map.renderNum; index++) {
 		var offset = randomNum(-pipe.maxOffset, pipe.maxOffset);
 		var height = randomNum(pipe.minHeight, pipe.maxHeight);
 		var gap = randomNum(pipe.minGap, pipe.maxGap);
+		// 奖励物的随机位置
+		var posY = randomNum(height + reward.height / 2, height +
+			gap - reward.height / 2);
 		addPipe(index, offset, height, gap);
+		addReward(index, offset, posY);
 	}
 }
 
@@ -67,6 +75,8 @@ function initFlyOver() {
 		object.flyOver.push(false);
 	}
 }
+
+
 
 /**
  * 生成一面墙
@@ -91,27 +101,7 @@ function createWall(x, y, z, dx, dy, dz) {
 	return wall;
 }
 
-/**
- * 生成一个水管
- * @param {int} index 水管所在Z轴的下标，(index*两水管距离)为水管的固定位置
- * @param {int} offset 水管相对于固定位置的偏移量(可正负)
- * @param {int} height 水管底部的高度
- * @param {int} gap 上下水管的间隙
- * @return {Object3D} 返回水管对象
- */
-function createPipe(index, offset, height, posY) {
-	var roadWidth = objectInfo.map.roadWidth;
-	var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
-	// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
-	var geometry = new THREE.CylinderGeometry(roadWidth / 2, roadWidth / 2, height, 16);
-	var material = new THREE.MeshPhongMaterial({
-		map: texture
-	});
-	pipe = new THREE.Mesh(geometry, material);
-	setLocation(pipe, 0, posY, -index * objectInfo.pipe.distance + offset);
-	return pipe;
-}
 
 // 添加水管及奖励物到场景中
 function addPipe(index, offset, height, gap) {
@@ -153,11 +143,63 @@ function removePipe(index) {
 	object.pipeArray[index * 2 + 1] = null;
 }
 
+/**
+ * 生成一个水管
+ * @param {int} index 水管所在Z轴的下标，(index*两水管距离)为水管的固定位置
+ * @param {int} offset 水管相对于固定位置的偏移量(可正负)
+ * @param {int} height 水管底部的高度
+ * @param {int} gap 上下水管的间隙
+ * @return {Object3D} 返回水管对象
+ */
+function createPipe(index, offset, height, posY) {
+	var roadWidth = objectInfo.map.roadWidth;
+	var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
+	// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
+	var geometry = new THREE.CylinderGeometry(roadWidth / 2, roadWidth / 2, height, 16);
+	var material = new THREE.MeshPhongMaterial({
+		map: texture
+	});
+	pipe = new THREE.Mesh(geometry, material);
+	setLocation(pipe, 0, posY, -index * objectInfo.pipe.distance + offset);
+	return pipe;
+}
 
 
+
+// 添加一个奖励物至场景中
+function addReward(index, offset, posY) {
+	var reward = objectInfo.reward;
+	// 先移除该位置原来的奖励物
+	removeReward(index);
+
+	// 奖励物包围盒
+	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
+	object.reward.coverBoxArray[index] = rewardCoverBox;
+	scene.add(rewardCoverBox);
+
+	// 奖励物本体
+	// todo
+
+	return rewardCoverBox;
+}
+
+// 移除下标index处的奖励物
+function removeReward(index) {
+	// 奖励物本体
+	var reward = object.reward.trueRewardArray[index];
+	scene.remove(reward);
+	object.reward.trueRewardArray[index] = null;
+	// 奖励物包围盒
+	var rewardCoverBox = object.reward.coverBoxArray[index];
+	scene.remove(rewardCoverBox);
+	object.reward.coverBoxArray[index] = null;
+}
+
+// 生成下标index处的水管的奖励物包围盒
 function createRewardCoverBox(index, offset, posY) {
 	var reward = objectInfo.reward;
-	var geometry = new THREE.CylinderGeometry(reward.radius, reward.radius, reward.height, 4);
+	var geometry = new THREE.CylinderGeometry(reward.radius, reward.radius, reward.height, 6);
 	var material = new THREE.MeshBasicMaterial({
 		color: 0xff0000
 	});
@@ -166,28 +208,7 @@ function createRewardCoverBox(index, offset, posY) {
 	return box;
 }
 
+// todo
 function createReward() {
-	
-}
 
-function addReward(index, offset, pipeHeight, pipeGap) {
-	var reward = objectInfo.reward;
-	// 先移除该位置原来的奖励物
-	removeReward(index);
-	
-	var rewardCoverBox = createRewardCoverBox(index, offset, randomNum(pipeHeight+reward.height, pipeHeight+pipeGap-reward.height));
-	object.rewardArray[index * 2 + 1] = rewardCoverBox;
-	scene.add(rewardCoverBox);
-}
-
-// 移除下标index处的奖励物
-function removeReward(index) {
-	// 奖励物本体
-	var reward = object.rewardArray[index * 2];
-	scene.remove(reward);
-	object.rewardArray[index * 2] = null;
-	// 奖励物包围盒
-	var rewardCoverBox = object.rewardArray[index * 2 + 1];
-	scene.remove(rewardCoverBox);
-	object.rewardArray[index * 2 + 1] = null;
 }
