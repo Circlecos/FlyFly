@@ -14,6 +14,7 @@ function moveEvent(bird) {
 	var sideSpeed = global.moving.moveSideSpeed;
 	var jumpSpeed = global.moving.jumpSpeed;
 	var fallSpeed = global.moving.fallSpeed;
+	var headRiseSpeed = global.moving.headRiseSpeed;
 	// todo: 1.修复moveEvent 2.添加鼠标实现的环视逻辑（可能）
 
 	if (forward) {
@@ -26,7 +27,10 @@ function moveEvent(bird) {
 		moveRight(bird, sideSpeed);
 	}
 	if (jump) {
-		jumpUp(bird, jumpSpeed);
+		jumpUp(bird, jumpSpeed, headRiseSpeed);
+	}
+	if (!jump) {
+		lowerHead(bird, headRiseSpeed);
 	}
 	fallDown(bird);
 }
@@ -56,11 +60,24 @@ function moveRight(bird, speed) {
 }
 
 // 跳跃
-function jumpUp(bird, speed) {
+function jumpUp(bird, speed, headRiseSpeed) {
 	bird.coverBox.position.y += speed;
-	for (var i= 0; i<(bird.trueBird).length;i++)
+	bird.coverBox.rotation.x += headRiseSpeed;
+	for (var i= 0; i<(bird.trueBird).length;i++) {
 		bird.trueBird[i].position.y += speed;
+		bird.trueBird[i].rotation.x += headRiseSpeed;
+	}	
     camera.position.y += speed;
+}
+
+// 低头
+function lowerHead(bird, headRiseSpeed) {
+	if (bird.coverBox.rotation.x > 0) {
+		bird.coverBox.rotation.x -= headRiseSpeed;
+		for (var i= 0; i<(bird.trueBird).length;i++) {
+			bird.trueBird[i].rotation.x -= headRiseSpeed;
+		}
+	}
 }
 
 // 下降
