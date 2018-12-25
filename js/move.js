@@ -40,7 +40,10 @@ function moveForward(bird, speed) {
 	bird.coverBox.position.z -= speed;
 	for (var i= 0; i<(bird.trueBird).length;i++)
 		bird.trueBird[i].position.z -= speed;
-    camera.position.z -= speed;
+	camera.position.z -= speed;
+	controls.target = new THREE.Vector3(bird.coverBox.position.x
+		,bird.coverBox.position.y
+		,bird.coverBox.position.z);
 }
 
 // 左偏
