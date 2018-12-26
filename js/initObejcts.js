@@ -153,6 +153,7 @@ function removePipe(index) {
  */
 function createPipe(index, offset, height, posY) {
 	var roadWidth = objectInfo.map.roadWidth;
+	//todo: use first Model & clone 
 	var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
 	// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
@@ -228,14 +229,12 @@ function initFirstRewardModelObject(){
 					object.scale.set(3, 3, 3);
 					object.rotation.x = -Math.PI/2;
 					global.object.reward.loadedRewardModel = object;
-					// todo: 发送奖励物模型加载完成
 					document.getElementById("modelLoadStatus").value++;
 					document.getElementById("modelLoadStatus").onchange();
 		});
 	});
 }
 
-// todo
 function createReward(index,offset,posY) {
 	var object =  global.object.reward.loadedRewardModel.clone();
 	let deltaY = -45;
