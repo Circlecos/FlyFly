@@ -15,7 +15,6 @@ function moveEvent(bird) {
 	var jumpSpeed = global.moving.jumpSpeed;
 	var fallSpeed = global.moving.fallSpeed;
 	var headRiseSpeed = global.moving.headRiseSpeed;
-	// todo: 1.修复moveEvent 2.添加鼠标实现的环视逻辑（可能）
 
 	if (forward) {
 		moveForward(bird, forwardSpeed);

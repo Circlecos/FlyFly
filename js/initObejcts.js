@@ -205,6 +205,7 @@ function createRewardCoverBox(index, offset, posY) {
 		color: 0xff0000
 	});
 	var box = new THREE.Mesh(geometry, material);
+	box.visible = false;
 	setLocation(box, 0, posY, -index * objectInfo.pipe.distance + offset);
 	return box;
 }
@@ -229,14 +230,12 @@ function initFirstRewardModelObject(){
 					object.scale.set(3, 3, 3);
 					object.rotation.x = -Math.PI/2;
 					global.object.reward.loadedRewardModel = object;
-					// todo: 发送奖励物模型加载完成
 					document.getElementById("modelLoadStatus").value++;
 					document.getElementById("modelLoadStatus").onchange();
 		});
 	});
 }
 
-// todo
 function createReward(index,offset,posY) {
 	var object =  global.object.reward.loadedRewardModel.clone();
 	let deltaY = -45;
