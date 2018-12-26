@@ -56,7 +56,7 @@ function initPipes() {
 	emptyPipe[1].visible = false;
 	// 在起点添加一个看不见的奖励物以保证pipeArray数组能够进行碰撞检测
 	var emptyReward = addReward(0, 0, 0);
-	emptyReward.visible = false;
+	//emptyReward.visible = false;
 	for (var index = 1; index <= objectInfo.map.renderNum; index++) {
 		var offset = randomNum(-pipe.maxOffset, pipe.maxOffset);
 		var height = randomNum(pipe.minHeight, pipe.maxHeight);
@@ -166,7 +166,6 @@ function createPipe(index, offset, height, posY) {
 }
 
 
-
 // 添加一个奖励物至场景中
 function addReward(index, offset, posY) {
 	var reward = objectInfo.reward;
@@ -177,15 +176,13 @@ function addReward(index, offset, posY) {
 	/*
 	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
 	object.reward.coverBoxArray[index] = rewardCoverBox;
-	scene.add(rewardCoverBox);*/
-	//bject.reward.coverBoxArray[index].visible = false;
-	rewardCoverBox.visible = false;
-	
+	scene.add(rewardCoverBox);
+*/
+	createReward(index, offset, posY);
 	// 奖励物本体
 	// todo
-	createReward(index,offset,posY);
+	return global.object.reward.trueRewardArray[index];
 	
-	return reward;
 }
 
 // 移除下标index处的奖励物
@@ -212,6 +209,10 @@ function createRewardCoverBox(index, offset, posY) {
 	return box;
 }
 
+
+
+
+
 // todo
 function createReward(index,offset,posY) {
 
@@ -223,18 +224,17 @@ function createReward(index,offset,posY) {
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials(materials);
 			var object = objLoader.load(
-				global.reward.rewardModelFilePath[index] +
-				global.reward.rewardObjFileName[index],
+				global.objectInfo.reward.rewardModelFilePath +
+				global.objectInfo.reward.rewardObjFileName,
 				function(object) {
-					console.log("The model path: "+ global.reward.rewardModelFilePath[index] +
-					global.reward.rewardObjFileName[index]);
+					console.log("The model path: "+ global.objectInfo.reward.rewardModelFilePath +
+					global.objectInfo.reward.rewardObjFileName);
 					
 					object.position.set(0, posY, -index * objectInfo.pipe.distance + offset);
-					object.scale.set(15, 15, 15);
-					global.object.reward.trueRewardArray.push(object);
+					object.scale.set(3, 3, 3);
+					global.object.reward.trueRewardArray[index] = object;
 
-					scene.add(global.object.reward.trueRewardArray[index]);
-					initBird();
+					scene.add(object);
 		});
 	});
 	

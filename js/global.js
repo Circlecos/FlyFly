@@ -61,7 +61,7 @@ var global = {
 			possibility: 4, // 奖励物生成的可能性（possibility/10）
 			radius: 55, // 奖励物包围盒的半径（暂定圆柱）
 			height: 85, // 奖励物包围盒的高度（暂定圆柱）
-			rewardModelFilePath: "model/Gift_Box", // 奖励物模型文件路径
+			rewardModelFilePath: "model/Gift_Box/", // 奖励物模型文件路径
 			rewardObjFileName: "BOX.obj", // 奖励物模型obj文件名
 			rewardMTLFileName: "BOX.mtl", // 奖励物模型mtl文件名
 		}
@@ -74,7 +74,7 @@ var global = {
 			initY: 1650, // 相机初始Y坐标
 			initZ: 0, // 相机初始Z坐标
 		},
-		moveForwardSpeed: 15, // 前进速度
+		moveForwardSpeed: 5, // 前进速度
 		moveSideSpeed: 15, // 向左右移动速度
 		jumpSpeed: 30, // 跳跃速度
 		fallSpeed: 15, // 下降速度

@@ -54,7 +54,7 @@ function checkCollision(bird) {
 	}
 	
 	// 奖励物碰撞检测
-	var reward = collision(bird.coverBox, object.reward.coverBoxArray);
+	var reward = collision(bird.coverBox, object.reward.trueRewardArray);
 	if (reward) {
 		console.log("奖励物");
 	}
