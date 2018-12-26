@@ -176,7 +176,7 @@ function addReward(index, offset, posY) {
 	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
 	object.reward.coverBoxArray[index] = rewardCoverBox;
 	scene.add(rewardCoverBox);
-
+	rewardCoverBox.visible=false;
 
 	createReward(index, offset, posY);
 	
