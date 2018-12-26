@@ -6,13 +6,14 @@ function initMapObjects() {
 	initFlyOver();
 }
 
-// 墙体参数
-var wallWidth = 50;
-var wallHeight = 5000;
-var wallDepth = 15000;
+
+var wallHeight = objectInfo.wall.wallHeight;
+var wallDepth = objectInfo.wall.wallDepth;
+var wallWidth = objectInfo.wall.wallWidth;
 
 // 初始化地面网格
 function initGround() {
+
 	var texture = new THREE.TextureLoader().load('img/textures/ground.jpg', function(texture) {});
 	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 	texture.repeat.set(50, 50);

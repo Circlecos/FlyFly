@@ -69,16 +69,18 @@ function moveRight(bird, speed) {
 
 // 跳跃
 function jumpUp(bird, speed, headRiseSpeed) {
-	bird.coverBox.position.y += speed;
-	bird.coverBox.rotation.x += headRiseSpeed;
-	for (var i= 0; i<(bird.trueBird).length;i++) {
-		bird.trueBird[i].position.y += speed;
-		bird.trueBird[i].rotation.x += headRiseSpeed;
-	}	
-	camera.position.y += speed;
-	controls.target = new THREE.Vector3(bird.coverBox.position.x
-		,bird.coverBox.position.y
-		,bird.coverBox.position.z);
+	if (bird.coverBox.position.y <= global.moving.maxHeight - 200){ //TODO: make this 200 into 'global'
+		bird.coverBox.position.y += speed;
+		bird.coverBox.rotation.x += headRiseSpeed;
+		for (var i= 0; i<(bird.trueBird).length;i++) {
+			bird.trueBird[i].position.y += speed;
+			bird.trueBird[i].rotation.x += headRiseSpeed;
+		}	
+		camera.position.y += speed;
+		controls.target = new THREE.Vector3(bird.coverBox.position.x
+			,bird.coverBox.position.y
+			,bird.coverBox.position.z);
+	}
 }
 
 // 低头

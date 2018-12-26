@@ -65,7 +65,12 @@ var global = {
 			rewardModelFilePath: "model/Gift_Box/", // 奖励物模型文件路径
 			rewardObjFileName: "BOX.obj", // 奖励物模型obj文件名
 			rewardMTLFileName: "BOX.mtl", // 奖励物模型mtl文件名
-		}
+		},
+		wall:{// 墙体参数
+			wallWidth: 50,
+			wallHeight: 5000,
+			wallDepth: 15000,
+		},
 	},
 
 	// 移动事件参数
@@ -80,6 +85,8 @@ var global = {
 		jumpSpeed: 30, // 跳跃速度
 		fallSpeed: 15, // 下降速度
 		headRiseSpeed: Math.PI / 720, // 抬头速度（度/帧）
+		maxHeight: 5000, // 上升的最大高度
+						 // 与墙体最大高度global.objectInfo.wall.wallHeight相等
 	},
 
 	lights: {
