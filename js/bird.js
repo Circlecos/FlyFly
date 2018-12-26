@@ -16,6 +16,10 @@ function createCoverBox() {
 	var box = new THREE.Mesh(geometry, material);
 	box.position.y = 1000;
 	box.visible = false;
+	controls.target = new THREE.Vector3(box.position.x
+		,box.position.y
+		,box.position.z);
+	controls.update();
 	return box;
 }
 

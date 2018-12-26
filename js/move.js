@@ -51,7 +51,10 @@ function moveLeft(bird, speed) {
 	bird.coverBox.position.x -= speed;
 	for (var i= 0; i<(bird.trueBird).length;i++)
 		bird.trueBird[i].position.x -= speed;
-    camera.position.x -= speed;
+	camera.position.x -= speed;
+	controls.target = new THREE.Vector3(bird.coverBox.position.x
+		,bird.coverBox.position.y
+		,bird.coverBox.position.z);
 }
 
 // 右偏
@@ -59,7 +62,10 @@ function moveRight(bird, speed) {
 	bird.coverBox.position.x += speed;
 	for (var i= 0; i<(bird.trueBird).length;i++)
 		bird.trueBird[i].position.x += speed;;
-    camera.position.x += speed;
+	camera.position.x += speed;
+	controls.target = new THREE.Vector3(bird.coverBox.position.x
+		,bird.coverBox.position.y
+		,bird.coverBox.position.z);
 }
 
 // 跳跃
@@ -70,7 +76,10 @@ function jumpUp(bird, speed, headRiseSpeed) {
 		bird.trueBird[i].position.y += speed;
 		bird.trueBird[i].rotation.x += headRiseSpeed;
 	}	
-    camera.position.y += speed;
+	camera.position.y += speed;
+	controls.target = new THREE.Vector3(bird.coverBox.position.x
+		,bird.coverBox.position.y
+		,bird.coverBox.position.z);
 }
 
 // 低头
@@ -93,12 +102,18 @@ function fallDown(bird) {
 		bird.coverBox.position.y += h;
         camera.position.y += h;
 	}
+	controls.target = new THREE.Vector3(bird.coverBox.position.x
+		,bird.coverBox.position.y
+		,bird.coverBox.position.z);
 }
 
 // 回到起点
 function backToStartPoint(bird) {
+	camera.position.z -= bird.coverBox.position.z;
 	bird.coverBox.position.z = 0;
 	for (var i= 0; i<(bird.trueBird).length;i++)
 			bird.trueBird[i].position.z = 0;
-    camera.position.z = global.moving.camera.initZ;
+	controls.target = new THREE.Vector3(bird.coverBox.position.x
+		,bird.coverBox.position.y
+		,bird.coverBox.position.z);
 }
