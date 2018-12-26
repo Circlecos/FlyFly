@@ -72,11 +72,16 @@ function gameStart() {
 	initScene();
 	initLight();
 	initGUI();
-	initMapObjects();
+	initFirstRewardModelObject();
 	initBird();
+}
 
-	// 强制渲染第一次(将监听准备完成事件)
-	renderer.render(scene, camera);
+function loadStatusChange(){
+	console.log(document.getElementById('modelLoadStatus').value);
+	if (document.getElementById('modelLoadStatus').value == 2){
+		initMapObjects();
+		renderer.render(scene, camera);
 
-	animation();
+		animation();
+	}
 }

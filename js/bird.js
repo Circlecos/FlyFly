@@ -55,6 +55,8 @@ function loadBirdModel(index) {
 				loadBirdModel(index + 1);
 			} else {
 				global.bird.birdObject.trueBird[0].visible = true;
+				document.getElementById('modelLoadStatus').value ++;
+				document.getElementById('modelLoadStatus').onchange();
 			}
 		});
 	

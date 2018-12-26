@@ -49,6 +49,7 @@
 				</div>
 			</div>
 			<p>帮助：按空格键控制小鸟飞行高度 按ESC键召唤菜单</p>
+	
 		</div>
 		<div>
 			<h1 align="center">3d FlappyBird</h1>
@@ -59,6 +60,9 @@
 			当前得分：<span id="currScore">0</span>
 			历史最高分：<span id="historyTopScore">0</span>
 		</p>
+		<input type="text" sytle="display:none" 
+			value="0" id="modelLoadStatus" onchange="loadStatusChange()">
+		</input>
 		<!-- 系统提示语 -->
 		<p id="sysTip">Level Up!</p>
 	</body>

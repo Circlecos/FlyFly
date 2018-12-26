@@ -55,7 +55,7 @@ function initPipes() {
 	emptyPipe[0].visible = false;
 	emptyPipe[1].visible = false;
 	// 在起点添加一个看不见的奖励物以保证pipeArray数组能够进行碰撞检测
-	emptyReward = addReward(0, 0, 0);
+	var emptyReward = addReward(0, 0, 0);
 	emptyReward.visible = false;
 	for (var index = 1; index <= objectInfo.map.renderNum; index++) {
 		var offset = randomNum(-pipe.maxOffset, pipe.maxOffset);
@@ -166,7 +166,6 @@ function createPipe(index, offset, height, posY) {
 }
 
 
-
 // 添加一个奖励物至场景中
 function addReward(index, offset, posY) {
 	var reward = objectInfo.reward;
@@ -177,15 +176,12 @@ function addReward(index, offset, posY) {
 	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
 	object.reward.coverBoxArray[index] = rewardCoverBox;
 	scene.add(rewardCoverBox);
-	//bject.reward.coverBoxArray[index].visible = false;
-	rewardCoverBox.visible = false;
+
+
+	createReward(index, offset, posY);
 	
-	// 奖励物本体
-	// todo
-	var reward = createReward(index,offset,posY);
-	object.reward.trueRewardArray[index] = reward;
-	scene.add(reward);
-	return reward;
+	return global.object.reward.trueRewardArray[index];
+	
 }
 
 // 移除下标index处的奖励物
@@ -212,18 +208,40 @@ function createRewardCoverBox(index, offset, posY) {
 	return box;
 }
 
+
+
+function initFirstRewardModelObject(){
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath('model/Gift_Box/');
+	mtlLoader.load('BOX.mtl', function (materials){
+			materials.preload();
+
+			var objLoader = new THREE.OBJLoader();
+			objLoader.setMaterials(materials);
+			var object = objLoader.load(
+				global.objectInfo.reward.rewardModelFilePath +
+				global.objectInfo.reward.rewardObjFileName,
+				function(object) {
+					console.log("The model path: "+ global.objectInfo.reward.rewardModelFilePath +
+					global.objectInfo.reward.rewardObjFileName);
+					
+					object.scale.set(3, 3, 3);
+					object.rotation.x = -Math.PI/2;
+					global.object.reward.loadedRewardModel = object;
+					// todo: 发送奖励物模型加载完成
+					document.getElementById("modelLoadStatus").value++;
+					document.getElementById("modelLoadStatus").onchange();
+		});
+	});
+}
+
 // todo
 function createReward(index,offset,posY) {
-	
-	var reward = objectInfo.reward;
-	var radius = objectInfo.reward.radius;
-	var texture = new THREE.TextureLoader().load('img/textures/reward.png', function(texture) {});
-	var geometry = new THREE.CylinderGeometry(reward.radius, reward.radius, reward.height, 6);
-	var material = new THREE.MeshBasicMaterial({
-		map: texture
-	});
-	reward = new THREE.Mesh(geometry, material);
-	setLocation(reward, 0, posY, -index * objectInfo.pipe.distance + offset);
-	return reward;
-	
+	var object =  global.object.reward.loadedRewardModel.clone();
+	let deltaY = -45;
+	object.position.set(0, posY + deltaY, -index * objectInfo.pipe.distance + offset);
+	object.scale.set(3, 3, 3);
+	global.object.reward.trueRewardArray[index] = object;
+
+	scene.add(object);
 }

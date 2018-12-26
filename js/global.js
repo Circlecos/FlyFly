@@ -34,6 +34,7 @@ var global = {
 		reward: {
 			trueRewardArray: [], // 存储奖励物对象的数组
 			coverBoxArray: [], // 存储奖励物包围盒的数组
+			loadedRewardModel:null,//加载完的初始模型
 		},
 		wallArray: [], // 存储两侧墙体对象的数组
 		flyOver: [], // 记录小鸟最近飞过的水管
@@ -61,8 +62,9 @@ var global = {
 			possibility: 4, // 奖励物生成的可能性（possibility/10）
 			radius: 55, // 奖励物包围盒的半径（暂定圆柱）
 			height: 85, // 奖励物包围盒的高度（暂定圆柱）
-			rewardModelFilePath: "", // 奖励物模型文件路径
-			rewardModelFileName: "", // 奖励物模型文件名
+			rewardModelFilePath: "model/Gift_Box/", // 奖励物模型文件路径
+			rewardObjFileName: "BOX.obj", // 奖励物模型obj文件名
+			rewardMTLFileName: "BOX.mtl", // 奖励物模型mtl文件名
 		}
 	},
 
