@@ -120,7 +120,7 @@ function addPipe(index, offset, height, gap) {
 
 	// 奖励物
 	if (randomNum(1, 10) <= objectInfo.reward.possibility) {
-		//addReward(index, offset, height, gap);
+		addReward(index, offset, gap);
 	}
 
 
@@ -165,43 +165,6 @@ function createPipe(index, offset, height, posY) {
 	return pipe;
 }
 
-function createReward(index, offset, posY) {
-	/*
-	var reward = objectInfo.reward;
-	var texture = new THREE.TextureLoader().load('img/textures/coin.png', function(texture) {});
-	var geometry = new THREE.CubeGeometry(200,200,200)
-	var material = new THREE.MeshPhongMaterial({
-		map: texture
-	});
-	var rewards = new THREE.Mesh(geometry, material);
-	setLocation(rewards, 0, posY, -index * objectInfo.pipe.distance + offset);
-	return rewards;*/
-	
-
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath('model/Gift_Box/');
-	mtlLoader.load('BOX.mtl', function (materials){
-			materials.preload();
-
-			var objLoader = new THREE.OBJLoader();
-			objLoader.setMaterials(materials);
-			var object = objLoader.load(
-				global.reward.rewardModelFilePath[index] +
-				global.reward.rewardObjFileName[index],
-				function(object) {
-					console.log("The model path: "+ global.reward.rewardModelFilePath[index] +
-					global.reward.rewardObjFileName[index]);
-					
-					object.position.set(0, 900, -38);
-					object.scale.set(15, 15, 15);
-					global.object.reward.trueRewardArray.push(object);
-
-					scene.add(global.object.reward.trueRewardArray[index], 0, posY, -index * objectInfo.pipe.distance + offset);
-					initBird();
-		});
-	});
-	return mtlLoader;
-}
 
 
 // 添加一个奖励物至场景中
@@ -214,13 +177,15 @@ function addReward(index, offset, posY) {
 	/*
 	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
 	object.reward.coverBoxArray[index] = rewardCoverBox;
-	scene.add(rewardCoverBox);
-*/
-	var rewards = createReward(index, offset, posY);
+	scene.add(rewardCoverBox);*/
+	//bject.reward.coverBoxArray[index].visible = false;
+	rewardCoverBox.visible = false;
+	
 	// 奖励物本体
 	// todo
-
-	return rewards;
+	createReward(index,offset,posY);
+	
+	return reward;
 }
 
 // 移除下标index处的奖励物
@@ -248,6 +213,29 @@ function createRewardCoverBox(index, offset, posY) {
 }
 
 // todo
-function createReward() {
+function createReward(index,offset,posY) {
 
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath('model/Gift_Box/');
+	mtlLoader.load('BOX.mtl', function (materials){
+			materials.preload();
+
+			var objLoader = new THREE.OBJLoader();
+			objLoader.setMaterials(materials);
+			var object = objLoader.load(
+				global.reward.rewardModelFilePath[index] +
+				global.reward.rewardObjFileName[index],
+				function(object) {
+					console.log("The model path: "+ global.reward.rewardModelFilePath[index] +
+					global.reward.rewardObjFileName[index]);
+					
+					object.position.set(0, posY, -index * objectInfo.pipe.distance + offset);
+					object.scale.set(15, 15, 15);
+					global.object.reward.trueRewardArray.push(object);
+
+					scene.add(global.object.reward.trueRewardArray[index]);
+					initBird();
+		});
+	});
+	
 }

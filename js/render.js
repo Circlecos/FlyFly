@@ -101,10 +101,7 @@ function drawNewMapObjects(bird) {
 
 		if (index == renderNum + 1) {
 			// 回到起点
-			bird.coverBox.position.z = 0;
-			for (var i = 0; i < (bird.trueBird).length; i++)
-				bird.trueBird[i].position.z = 0;
-			camera.position.z = global.moving.camera.initZ;
+
 			backToStartPoint(bird);
 		}
 	}
