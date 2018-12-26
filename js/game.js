@@ -7,21 +7,32 @@
 var GAME_OVER = false;
 var SCORE_SPEED = 1;
 var score = 0;
+var level = 1;
 
 function updateCurrScore() {
 	score += SCORE_SPEED;
-
+	
+	if (score > 1000 && level == 1) {
+		levelUp();
+	}else if (score > 2000 && level == 2) {
+		levelUp();
+	}else if (score > 3000 && level == 3) {
+		levelUp();
+	}else if (score > 4000 && level == 4) {
+		levelUp();
+	}else if (score > 5000 && level == 5) {
+		levelUp();
+	}
+	
 	$('#currScore').html(score);
 }
 
-// 碰到水管时中止游戏
-function collidePipes() {
-
-}
-
-// 碰到奖品时增加分数
-function collideRewards() {
-
+// 游戏难度提升
+function levelUp() {
+	level++;
+	global.moving.moveForwardSpeed += (global.moving.moveForwardSpeed * 0.15);
+	$('#sysTip').html('Speed Up!')
+	$('#sysTip').fadeIn(1500).fadeOut(1500);
 }
 
 // 游戏终止逻辑

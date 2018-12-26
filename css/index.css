@@ -154,3 +154,15 @@ button:hover {
 	color: white;
 }
 
+/* 系统提示语 */
+#sysTip {
+	position: fixed;
+	top: 55%;
+	left: 60%;
+	font-family: courier;
+	font-size: 30px;
+	font-weight: bold;
+	color: yellow;
+	display: none;
+}
+

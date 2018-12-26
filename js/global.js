@@ -73,7 +73,7 @@ var global = {
 			initY: 1650, // 相机初始Y坐标
 			initZ: 0, // 相机初始Z坐标
 		},
-		moveForwardSpeed: 15, // 前进速度
+		moveForwardSpeed: 13.0, // 前进速度
 		moveSideSpeed: 15, // 向左右移动速度
 		jumpSpeed: 30, // 跳跃速度
 		fallSpeed: 15, // 下降速度
