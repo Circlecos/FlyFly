@@ -120,7 +120,7 @@ function addPipe(index, offset, height, gap) {
 
 	// 奖励物
 	if (randomNum(1, 10) <= objectInfo.reward.possibility) {
-		//addReward(index, offset, height, gap);
+		addReward(index, offset, gap);
 	}
 
 
@@ -177,11 +177,15 @@ function addReward(index, offset, posY) {
 	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
 	object.reward.coverBoxArray[index] = rewardCoverBox;
 	scene.add(rewardCoverBox);
-
+	//bject.reward.coverBoxArray[index].visible = false;
+	rewardCoverBox.visible = false;
+	
 	// 奖励物本体
 	// todo
-
-	return rewardCoverBox;
+	var reward = createReward(index,offset,posY);
+	object.reward.trueRewardArray[index] = reward;
+	scene.add(reward);
+	return reward;
 }
 
 // 移除下标index处的奖励物
@@ -209,6 +213,17 @@ function createRewardCoverBox(index, offset, posY) {
 }
 
 // todo
-function createReward() {
-
+function createReward(index,offset,posY) {
+	
+	var reward = objectInfo.reward;
+	var radius = objectInfo.reward.radius;
+	var texture = new THREE.TextureLoader().load('img/textures/reward.png', function(texture) {});
+	var geometry = new THREE.CylinderGeometry(reward.radius, reward.radius, reward.height, 6);
+	var material = new THREE.MeshBasicMaterial({
+		map: texture
+	});
+	reward = new THREE.Mesh(geometry, material);
+	setLocation(reward, 0, posY, -index * objectInfo.pipe.distance + offset);
+	return reward;
+	
 }
