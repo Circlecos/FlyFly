@@ -31,8 +31,9 @@ function updateCurrScore() {
 function levelUp() {
 	level++;
 	global.moving.moveForwardSpeed += (global.moving.moveForwardSpeed * 0.15);
-	$('#sysTip').html('Speed Up!')
+	$('#sysTip').html('Speed Up!');
 	$('#sysTip').fadeIn(1500).fadeOut(1500);
+	$('#levelUpAudio')[0].play();
 }
 
 // 游戏终止逻辑

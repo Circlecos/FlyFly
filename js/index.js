@@ -73,12 +73,13 @@ function gameStart() {
 	initLight();
 	initGUI();
 	initFirstRewardModelObject();
+	initSystemSound();
 	initBird();
 }
 
 function loadStatusChange(){
 	console.log(document.getElementById('modelLoadStatus').value);
-	if (document.getElementById('modelLoadStatus').value == 2){
+	if (document.getElementById('modelLoadStatus').value == 3){
 		initMapObjects();
 		renderer.render(scene, camera);
 

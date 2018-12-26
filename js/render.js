@@ -55,7 +55,7 @@ function checkCollision(bird) {
 	// 奖励物碰撞检测
 	var reward = collision(bird.coverBox, object.reward.coverBoxArray);
 	if (reward) {
-		removeReward(reward);
+		// removeReward(reward.index);
 		console.log("奖励物");
 	}
 }
@@ -78,7 +78,6 @@ function drawNewMapObjects(bird) {
 	var flyOver = object.flyOver;
 
 	if (index >= 1 && !flyOver[index]) {
-		console.log(object.reward.coverBoxArray)
 		// 水管的随机参数
 		var offset = randomNum(-pipe.maxOffset, pipe.maxOffset);
 		var height = randomNum(pipe.minHeight, pipe.maxHeight);

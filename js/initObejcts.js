@@ -150,10 +150,10 @@ function removePipe(index) {
  * @param {int} height 水管底部的高度
  * @param {int} gap 上下水管的间隙
  * @return {Object3D} 返回水管对象
- */
+ */var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
+	
 function createPipe(index, offset, height, posY) {
 	var roadWidth = objectInfo.map.roadWidth;
-	var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
 	// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
 	var geometry = new THREE.CylinderGeometry(roadWidth / 2, roadWidth / 2, height, 16);
@@ -174,9 +174,9 @@ function addReward(index, offset, posY) {
 
 	// 奖励物包围盒
 	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
+	rewardCoverBox.index = index;
 	object.reward.coverBoxArray[index] = rewardCoverBox;
 	scene.add(rewardCoverBox);
-
 
 	createReward(index, offset, posY);
 	
@@ -192,6 +192,7 @@ function removeReward(index) {
 	object.reward.trueRewardArray[index] = null;
 	// 奖励物包围盒
 	var rewardCoverBox = object.reward.coverBoxArray[index];
+	
 	scene.remove(rewardCoverBox);
 	object.reward.coverBoxArray[index] = null;
 }
