@@ -15,7 +15,6 @@ function animation() {
 
 		// 小鸟对象
 		var bird = global.bird.birdObject;
-
 		// 移动事件
 		moveEvent(bird);
 
@@ -54,8 +53,9 @@ function checkCollision(bird) {
 	}
 	
 	// 奖励物碰撞检测
-	var reward = collision(bird.coverBox, object.reward.trueRewardArray);
+	var reward = collision(bird.coverBox, object.reward.coverBoxArray);
 	if (reward) {
+		removeReward(reward);
 		console.log("奖励物");
 	}
 }
