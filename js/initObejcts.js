@@ -176,6 +176,7 @@ function addReward(index, offset, posY) {
 	var rewardCoverBox = createRewardCoverBox(index, offset, posY);
 	rewardCoverBox.index = index;
 	object.reward.coverBoxArray[index] = rewardCoverBox;
+	rewardCoverBox.index = index;
 	scene.add(rewardCoverBox);
 
 	createReward(index, offset, posY);
@@ -202,10 +203,11 @@ function createRewardCoverBox(index, offset, posY) {
 	var reward = objectInfo.reward;
 	var geometry = new THREE.CylinderGeometry(reward.radius, reward.radius, reward.height, 6);
 	var material = new THREE.MeshBasicMaterial({
-		color: 0xff0000
+		opacity: 0,
+		transparent: true,
 	});
 	var box = new THREE.Mesh(geometry, material);
-	box.visible = false;
+	//box.visible = false;
 	setLocation(box, 0, posY, -index * objectInfo.pipe.distance + offset);
 	return box;
 }

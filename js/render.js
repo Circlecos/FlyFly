@@ -51,11 +51,20 @@ function checkCollision(bird) {
 	if (pipe) {
 		GAME_OVER = true;
 	}
-	
+
+	var not_null_coverbox = [];
+	global.object.reward.coverBoxArray.forEach(coverbox => {
+		if (coverbox!=null){
+			not_null_coverbox.push(coverbox);
+		}
+	});
+
+
 	// 奖励物碰撞检测
-	var reward = collision(bird.coverBox, object.reward.coverBoxArray);
+	var reward = collision(bird.coverBox, not_null_coverbox);
 	if (reward) {
-		// removeReward(reward.index);
+		removeReward(reward.index);
+		$('#eatRewardAudio')[0].play();
 		console.log("奖励物");
 	}
 }
