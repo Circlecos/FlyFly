@@ -64,9 +64,12 @@ function checkCollision(bird) {
 	var reward = collision(bird.coverBox, not_null_coverbox);
 	if (reward) {
 		score += reward.score;
+		if (reward.index == global.objectInfo.map.renderNum)
+			removeReward(0);
 		removeReward(reward.index);
+		
 		$('#eatRewardAudio')[0].play();
-		console.log("奖励物");
+		console.log("奖励物 "+ reward.index);
 	}
 }
 
