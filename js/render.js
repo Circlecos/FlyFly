@@ -9,9 +9,8 @@ function animation() {
 		if (global.system.time % 6 == 0) {
 			modifyBirdModelvisibility();
 		}
-		if (global.system.time % 20 == 0) {
-			console.log("time:", global.system.time);
-		}
+
+		rotateReward();
 
 		// 小鸟对象
 		var bird = global.bird.birdObject;
@@ -115,4 +114,17 @@ function drawNewMapObjects(bird) {
 			backToStartPoint(bird);
 		}
 	}
+}
+
+function rotateReward(){
+	var reward = global.object.reward;
+	reward.coverBoxArray.forEach(coverBox => {
+		if (coverBox !=null)
+			coverBox.rotation.z += Math.PI/300;
+	});
+	
+	reward.trueRewardArray.forEach(trueReward => {
+		if (trueReward !=null)
+			trueReward.rotation.z += Math.PI/300;
+	});
 }
