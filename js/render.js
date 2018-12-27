@@ -24,7 +24,6 @@ function animation() {
 		updateCurrScore();
 
 		// 绘制新的障碍物和奖励物
-		// TODO: 使障碍物转动
 		drawNewMapObjects(bird);
 
 		// 渲染当前帧并请求下一次渲染动作
@@ -64,13 +63,10 @@ function checkCollision(bird) {
 	// 奖励物碰撞检测
 	var reward = collision(bird.coverBox, not_null_coverbox);
 	if (reward) {
-		score += reward.score;
-		if (reward.index == global.objectInfo.map.renderNum)
+		eatReward(reward.score);
+		if (reward.index == global.objectInfo.map.renderNum + 1)
 			removeReward(0);
 		removeReward(reward.index);
-		
-		$('#eatRewardAudio')[0].play();
-		console.log("奖励物 "+ reward.index);
 	}
 }
 
@@ -124,7 +120,7 @@ function rotateReward(){
 	var reward = global.object.reward;
 	reward.coverBoxArray.forEach(coverBox => {
 		if (coverBox !=null)
-			coverBox.rotation.z += Math.PI/300;
+			coverBox.rotation.y += Math.PI/300;
 	});
 	
 	reward.trueRewardArray.forEach(trueReward => {

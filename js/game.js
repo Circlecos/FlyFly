@@ -11,20 +11,28 @@ var level = 1;
 
 function updateCurrScore() {
 	score += SCORE_SPEED;
-	
+
 	if (score > 1000 && level == 1) {
 		levelUp();
-	}else if (score > 2000 && level == 2) {
+	} else if (score > 2000 && level == 2) {
 		levelUp();
-	}else if (score > 3000 && level == 3) {
+	} else if (score > 3000 && level == 3) {
 		levelUp();
-	}else if (score > 4000 && level == 4) {
+	} else if (score > 4000 && level == 4) {
 		levelUp();
-	}else if (score > 5000 && level == 5) {
+	} else if (score > 5000 && level == 5) {
 		levelUp();
 	}
-	
+
 	$('#currScore').html(score);
+}
+
+// 碰到奖励物加分
+function eatReward(reward_score) {
+	score += reward_score;
+	$('#sysTip').html('+100');
+	$('#sysTip').fadeIn(0).fadeOut(1000);
+	$('#eatRewardAudio')[0].play();
 }
 
 // 游戏难度提升
@@ -39,26 +47,26 @@ function levelUp() {
 // 游戏终止逻辑
 function gameOver() {
 	if (global.system.pause == true) {
-        global.system.pause = false;
+		global.system.pause = false;
 
-        var currScore = score;
-        var historyTopScore = global.system.historyTopScore;
-        var comment = "不要灰心，再接再厉！";
-        if (currScore > historyTopScore) {
-            comment = "打破记录，可喜可贺！";
-            updateHistoryTopScore();
-        }
-        var message = "游戏结束！\n";
-        message += ("本次得分：" + currScore + "\n");
-        message += ("历史最高分：" + historyTopScore + "\n");
-        message += ("评语：" + comment);
-        alert(message);
+		var currScore = score;
+		var historyTopScore = global.system.historyTopScore;
+		var comment = "不要灰心，再接再厉！";
+		if (currScore > historyTopScore) {
+			comment = "打破记录，可喜可贺！";
+			updateHistoryTopScore();
+		}
+		var message = "游戏结束！\n";
+		message += ("本次得分：" + currScore + "\n");
+		message += ("历史最高分：" + historyTopScore + "\n");
+		message += ("评语：" + comment);
+		alert(message);
 
-        // 重刷页面
-        setTimeout(function () {
-            window.location.reload();
-        }, 0);
-    }
+		// 重刷页面
+		setTimeout(function () {
+			window.location.reload();
+		}, 0);
+	}
 }
 
 // 更新历史最高分
@@ -74,8 +82,8 @@ function updateHistoryTopScore() {
 			op: "updateScore",
 			score: score
 		},
-		success: function(res) {
-			
+		success: function (res) {
+
 		}
 	});
 }

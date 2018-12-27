@@ -151,7 +151,11 @@ function removePipe(index) {
  * @param {int} height 水管底部的高度
  * @param {int} gap 上下水管的间隙
  * @return {Object3D} 返回水管对象
- */var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
+ * 
+ */
+
+// TODO: make this signal-slot model	
+var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
 	
 function createPipe(index, offset, height, posY) {
 	var roadWidth = objectInfo.map.roadWidth;
@@ -244,7 +248,7 @@ function initFirstRewardModelObject(){
 
 function createReward(index,offset,posY) {
 	var object =  global.object.reward.loadedRewardModel.clone();
-	let deltaY = -45;
+	let deltaY = -75;
 	object.position.set(0, posY + deltaY, -index * objectInfo.pipe.distance + offset);
 	object.scale.set(3, 3, 3);
 	global.object.reward.trueRewardArray[index] = object;
