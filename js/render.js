@@ -124,7 +124,7 @@ function rotateReward(){
 	var reward = global.object.reward;
 	reward.coverBoxArray.forEach(coverBox => {
 		if (coverBox !=null)
-			coverBox.rotation.z += Math.PI/300;
+			coverBox.rotation.y += Math.PI/300;
 	});
 	
 	reward.trueRewardArray.forEach(trueReward => {

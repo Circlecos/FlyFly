@@ -44,7 +44,7 @@ function initOrbitControls(){
 	controls.enableDamping = false; // an animation loop is required when either damping or auto-rotation are enabled
 	controls.dampingFactor = 0.25;
 
-	controls.enableZoom = false;
+	controls.enableZoom = true;
 
 	controls.enableRotate = true;
 	controls.rotateSpeed = 0.05;

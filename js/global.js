@@ -60,8 +60,8 @@ var global = {
 		// 奖励物
 		reward: {
 			possibility: 4, // 奖励物生成的可能性（possibility/10）
-			radius: 65, // 奖励物包围盒的半径（暂定圆柱）
-			height: 95, // 奖励物包围盒的高度（暂定圆柱）
+			radius: 95, // 奖励物包围盒的半径（暂定圆柱）
+			height: 155, // 奖励物包围盒的高度（暂定圆柱）
 			rewardModelFilePath: "model/Gift_Box/", // 奖励物模型文件路径
 			rewardObjFileName: "BOX.obj", // 奖励物模型obj文件名
 			rewardMTLFileName: "BOX.mtl", // 奖励物模型mtl文件名

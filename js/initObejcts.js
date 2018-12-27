@@ -244,7 +244,7 @@ function initFirstRewardModelObject(){
 
 function createReward(index,offset,posY) {
 	var object =  global.object.reward.loadedRewardModel.clone();
-	let deltaY = -45;
+	let deltaY = -75;
 	object.position.set(0, posY + deltaY, -index * objectInfo.pipe.distance + offset);
 	object.scale.set(3, 3, 3);
 	global.object.reward.trueRewardArray[index] = object;
