@@ -36,6 +36,7 @@ function animation() {
 
 	}
 	requestAnimationFrame(animation);
+	stats.update();
 }
 
 // 碰撞检测
