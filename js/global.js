@@ -65,7 +65,7 @@ var global = {
 			rewardModelFilePath: "model/Gift_Box/", // 奖励物模型文件路径
 			rewardObjFileName: "BOX.obj", // 奖励物模型obj文件名
 			rewardMTLFileName: "BOX.mtl", // 奖励物模型mtl文件名
-			rewardScoreRange: [300,300] // 奖励物所增加的评分范围
+			rewardScoreRange: [100,100] // 奖励物所增加的评分范围
 		},
 		wall:{// 墙体参数
 			wallWidth: 50,
