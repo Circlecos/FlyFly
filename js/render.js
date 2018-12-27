@@ -25,6 +25,7 @@ function animation() {
 		updateCurrScore();
 
 		// 绘制新的障碍物和奖励物
+		// TODO: 使障碍物转动
 		drawNewMapObjects(bird);
 
 		// 渲染当前帧并请求下一次渲染动作
@@ -63,6 +64,7 @@ function checkCollision(bird) {
 	// 奖励物碰撞检测
 	var reward = collision(bird.coverBox, not_null_coverbox);
 	if (reward) {
+		score += reward.score;
 		removeReward(reward.index);
 		$('#eatRewardAudio')[0].play();
 		console.log("奖励物");

@@ -178,6 +178,9 @@ function addReward(index, offset, posY) {
 	rewardCoverBox.index = index;
 	object.reward.coverBoxArray[index] = rewardCoverBox;
 	rewardCoverBox.index = index;
+	rewardCoverBox.score = randomNum(global.objectInfo.reward.rewardScoreRange[0],
+		global.objectInfo.reward.rewardScoreRange[1]);
+	
 	scene.add(rewardCoverBox);
 
 	createReward(index, offset, posY);
