@@ -63,13 +63,10 @@ function checkCollision(bird) {
 	// 奖励物碰撞检测
 	var reward = collision(bird.coverBox, not_null_coverbox);
 	if (reward) {
-		score += reward.score;
+		eatReward(reward.score);
 		if (reward.index == global.objectInfo.map.renderNum + 1)
 			removeReward(0);
 		removeReward(reward.index);
-		
-		$('#eatRewardAudio')[0].play();
-		console.log("奖励物 "+ reward.index);
 	}
 }
 
