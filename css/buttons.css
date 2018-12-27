@@ -739,6 +739,7 @@
   *
   * Create colors for raised buttons
   */
+  /*
   .button-raised.button-primary {
     border-color: #a1d243;
     background: linear-gradient(rgb(208, 214, 196), rgb(153, 223, 14)); }
@@ -748,6 +749,17 @@
     .button-raised.button-primary:active, .button-raised.button-primary.active, .button-raised.button-primary.is-active {
       border-color: #a1d243;
       background: #a1d243; }
+*/
+.button-raised.button-primary {
+    border-color: #088ef0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#34a5f8), to(#088ef0));
+    background: linear-gradient(#99cff5, #088ef0); }
+    .button-raised.button-primary:hover, .button-raised.button-primary:focus {
+      background: -webkit-gradient(linear, left top, left bottom, from(#42abf8), to(#0888e6));
+      background: linear-gradient(top, #42abf8, #0888e6); }
+    .button-raised.button-primary:active, .button-raised.button-primary.active, .button-raised.button-primary.is-active {
+      border-color: #0880d7;
+      background: #2798eb; }
   .button-raised.button-plain {
     border-color: #f2f2f2;
     background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f2f2f2));

@@ -84,11 +84,11 @@ span#historyTopScore {
 	border-radius: 0.6rem;
 	margin-left: -140px;
 	display: block;
-	border:2px solid rgb(223, 240, 216);
+	border:2px solid rgb(217, 237, 247);
 	display: none;
 }
 .introduction .heading{
-	background-color: rgb(223, 240, 216);
+	background-color: rgb(217, 237, 247);
 	padding: 10px;
 }
 .introduction .pannel-body{
