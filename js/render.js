@@ -24,7 +24,6 @@ function animation() {
 		updateCurrScore();
 
 		// 绘制新的障碍物和奖励物
-		// TODO: 使障碍物转动
 		drawNewMapObjects(bird);
 
 		// 渲染当前帧并请求下一次渲染动作
@@ -64,7 +63,7 @@ function checkCollision(bird) {
 	var reward = collision(bird.coverBox, not_null_coverbox);
 	if (reward) {
 		score += reward.score;
-		if (reward.index == global.objectInfo.map.renderNum)
+		if (reward.index == global.objectInfo.map.renderNum + 1)
 			removeReward(0);
 		removeReward(reward.index);
 		
