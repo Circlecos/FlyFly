@@ -120,9 +120,9 @@ function addPipe(index, offset, height, gap) {
 	object.pipeArray[index * 2 + 1] = topPipe;
 
 	// 奖励物
-	if (randomNum(1, 10) <= objectInfo.reward.possibility) {
-		addReward(index, offset, gap);
-	}
+	// if (randomNum(1, 10) <= objectInfo.reward.possibility) {
+	// 	addReward(index, offset, gap);
+	// }
 
 
 	// 添加至场景

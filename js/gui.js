@@ -7,9 +7,6 @@
 */
 
 var webH = $(window).height();
-//按下"esc"键选择菜单
-
-
 
 function start() {
     global.system.pause = true;
@@ -87,12 +84,18 @@ function ret() {
     $(".level").css("display", "none");
     $(".menu").css("display", "block");
 }
-$(window).keydown(function (e) {
-    if (e.keyCode == 27 || e.which.keyCode == 27) {
-        global.system.pause = false;
-        $(".shade,.menu").css("display", "block");
-        $(".shade").height(webH);
-    }
+function showintroduction(){
+    $(".introduction").css("display","block");
+}
+function shutintroduction(){
+    $(".introduction").css("display","none");
+}
+$(window).keydown(function(e) { ////按下"esc"键选择菜单
+	if (e.keyCode == 27 || e.which.keyCode == 27) {
+		global.system.pause=false;
+		$(".shade,.menu").css("display", "block");
+		$(".shade").height(webH);
+	}
 });
 
 
