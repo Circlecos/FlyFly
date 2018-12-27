@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		<title>3d FlappyBird</title>
 		<link href="css/index.css" rel="stylesheet">
+		<link href="css/buttons.css" rel="stylesheet">
 		<script src="libs/three.js"></script>
 		<script src="libs/Stats.js"></script>
 		<script src="libs/JQuery/jquery-3.3.1.js"></script>
@@ -28,30 +29,49 @@
 	</head>
 	<body onload="gameStart();">
 		<p class="shade"></p>
-		<div class="menu">
-		<button id="pause" onclick="pause()">暂停</button><br>
-		<button id="start" onclick="start()">开始</button><br>
-		<button id="choose" onclick="choose()">难度选择</button>
-		</div>
-		<div class="level">
-			<button id="hard">艰难</button>
-			<button id="normal">普通</button>
-			<button id="easy">简单</button>
-			<a href="javascript:ret()" id="return">返回</a>
-		</div>
+
 		<div class="start" style="text-align: center">
-			<button onclick="start()">开始游戏</button>
+			<button class="button button-3d button-action button-pill" onclick="start()">Go</button>
+			<button class="button button-raised button-primary button-pill" onclick="showintroduction()">游戏说明</button>
 			<div class="dropdown">
-				<button class="dropbtn">难度选择</button>
+				<button class="button button-raised button-primary button-pill" >难度选择</button>
 				<div class="dropdown-content">
 					<a href="javascript:chooselevel(2)" id="lev2">艰难</a>
 					<a href="javascript:chooselevel(1)" id="lev1">普通</a>
 					<a href="javascript:chooselevel(0)" id="lev0">简单</a>
 				</div>
 			</div>
-			<p>帮助：按空格键控制小鸟飞行高度 按ESC键召唤菜单</p>
-	
 		</div>
+
+		<div class="menu">
+			<div class="btn">
+				<button id="start" onclick="start()" class="button button-glow button-border button-rounded button-action">　开始　</button><br>
+				<button id="choose" onclick="choose()" class="button button-glow button-border button-rounded button-action">难度选择</button>
+				<button id="choose" onclick="showintroduction()" class="button button-glow button-border button-rounded button-action">游戏说明</button>
+			</div>
+		</div>
+	
+		<div class="level">
+			<div class="btn">
+			<button id="hard" class="button button-glow button-border button-rounded button-action">　艰难　</button>
+			<button id="normal" class="button button-glow button-border button-rounded button-action">　普通　</button>
+			<button id="easy" class="button button-glow button-border button-rounded button-action">　简单　</button>
+			<br>
+			<a href="javascript:ret()" id="return">返回</a>
+			</div>
+		</div>
+
+		<div class="introduction">
+				<div class="heading">
+					<span id="title">游戏说明</span> <button id="btn" onclick="shutintroduction()"></button>  
+				</div>
+				<div class="pannel-body">
+					<h4>计分说明：</h4>小鸟每飞行1S计100分，每吃到一个奖励物奖励300分
+					<h4>等级说明：</h4>每1000分升一级
+					<h4>用户操作：</h4>按“空格键”控制小鸟的飞行高度，碰到水管则游戏结束；<br>按下“ESC”键可显示菜单进行难度选择、游戏说明。
+				</div>
+			</div>
+
 		<div>
 			<h1 align="center">3d FlappyBird</h1>
 		</div>
@@ -60,8 +80,7 @@
 			当前得分：<span id="currScore">0</span>
 			历史最高分：<span id="historyTopScore">0</span>
 		</p>
-		<input style="display:none" type="text" 
-			value="0" id="modelLoadStatus" onchange="loadStatusChange()">
+		<input type="hidden" value="0" id="modelLoadStatus" onchange="loadStatusChange()">
 		</input>
 		<!-- 系统提示语 -->
 		<p id="sysTip">Level Up!</p>		

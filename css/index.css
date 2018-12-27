@@ -58,7 +58,6 @@ span#historyTopScore {
 	margin-left: -140px;
 	display: none;
 }
-
 .start{
 	width: 240px;
 	padding: 20px;
@@ -71,26 +70,48 @@ span#historyTopScore {
 	margin-left: -140px;
 	display: block;
 }
-button{
-	background-color: white;
-	border: none;
-	color: black;
-	padding: 14px 14px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 14px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
-	border: 1px solid #555555;
-	border-radius: 4px;
-	width: 80%;
+.btn{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: 10%;
 }
-button:hover {
-	background-color: #555555;
-	color: white;
+.introduction{
+	font-size: 20px;
+	color: black;
+	position: fixed;
+	top: 20%;
+	left:45%;
+	border-radius: 0.6rem;
+	margin-left: -140px;
+	display: block;
+	border:2px solid rgb(223, 240, 216);
+	display: none;
+}
+.introduction .heading{
+	background-color: rgb(223, 240, 216);
+	padding: 10px;
+}
+.introduction .pannel-body{
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-bottom: 10px;
+	background-color: #f9f9f9;
+}
+.introduction #title{
+	margin-left: 40%;
+	font-size: 25px;
+	font-weight:bold;
+}
+.introduction #btn{
+	float:right;
+	background-image:url("../img/textures/shut.png");
+	background-size: 100% auto;
+	background-position: center center;
+	background-repeat: no-repeat;
+	height: 30px;
+	width:30px;
+	border-radius: 25px;
+	border: none;
 }
 #return{
 	color:black;
