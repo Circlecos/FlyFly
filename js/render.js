@@ -130,7 +130,7 @@ function drawNewMapObjects(bird) {
 		// 重新生成小鸟身后的水管
 		addPipe(index - 1, offset, height, gap);
 		// 同时重新生成小鸟身后水管的奖励物
-		//if(probabilityReward()) {addReward(index - 1, offset, posY)};
+		if(probabilityReward()) {addReward(index - 1, offset, posY)};
 
 		if (index == renderNum + 1) {
 			// 回到起点
