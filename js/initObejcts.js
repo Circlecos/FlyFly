@@ -66,7 +66,7 @@ function initPipes() {
 		var posY = randomNum(height + reward.height / 2, height +
 			gap - reward.height / 2);
 		addPipe(index, offset, height, gap);
-		addReward(index, offset, posY);
+		if(probabilityReward()) {addReward(index, offset, posY)};
 	}
 }
 

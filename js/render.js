@@ -69,6 +69,30 @@ function checkCollision(bird) {
 		removeReward(reward.index);
 	}
 }
+//判定奖励物是否生成
+function probabilityReward(){
+	
+	var probability = 0; 
+	var result = false;
+	//
+	if(level<5){
+		global.objectInfo.reward.possibility = 0.6;
+		probability =  Math.random() + 0.1 *  (score/500); 
+	}
+	if(level>5&&level<10){
+		
+		probability = 0.2 * Math.log10(score);
+	}
+	if(level>10) {probability = Math.random()}
+	if(probability < global.objectInfo.reward.possibility){
+		result = false;
+	}
+	else{
+		result = true;
+	}
+
+	return result;
+}
 
 // 绘制新的障碍物和奖励物并处理循环逻辑
 // 当遇到最后`globalInfo.mapObject.renderNum`个障碍物时额外渲染
@@ -98,7 +122,7 @@ function drawNewMapObjects(bird) {
 		// 生成水管到下标index+num处
 		addPipe(index + renderNum, offset, height, gap);
 		// 同时生成下标index+num处的奖励物
-		addReward(index + renderNum, offset, posY);
+		if(probabilityReward()) { addReward(index + renderNum, offset, posY) };
 		// 标注小鸟已经飞过index处的水管
 		flyOver[index] = true;
 		// 小鸟上一个飞过的水管标注为[未飞过]状态
@@ -106,7 +130,7 @@ function drawNewMapObjects(bird) {
 		// 重新生成小鸟身后的水管
 		addPipe(index - 1, offset, height, gap);
 		// 同时重新生成小鸟身后水管的奖励物
-		addReward(index - 1, offset, posY);
+		//if(probabilityReward()) {addReward(index - 1, offset, posY)};
 
 		if (index == renderNum + 1) {
 			// 回到起点
