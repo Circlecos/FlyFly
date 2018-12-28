@@ -5,11 +5,11 @@ window.onkeydown = function(ev) {
 	switch (keychar) {
 		case 'a':
 		case 'A':
-			left = true;
+			// left = true;
 			break;
 		case 'd':
 		case 'D':
-			right = true;
+			// right = true;
 			break;
 		case ' ':
 			jump = true;
