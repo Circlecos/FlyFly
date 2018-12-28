@@ -8,13 +8,13 @@ function initMapObjects() {
 
 
 var wallHeight = objectInfo.wall.wallHeight;
-var wallDepth = objectInfo.wall.wallDepth;
+var wallDepth = objectInfo.wall.wallDepth * 2;
 var wallWidth = objectInfo.wall.wallWidth;
 
 // 初始化地面网格
 function initGround() {
 
-	var texture = new THREE.TextureLoader().load('img/textures/ground.jpg', function(texture) {});
+	var texture = new THREE.TextureLoader().load('img/textures/ground.jpg', function (texture) { });
 	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 	texture.repeat.set(50, 50);
 
@@ -30,7 +30,7 @@ function initGround() {
 function initWall() {
 	var roadWidth = objectInfo.map.roadWidth;
 	// 左墙体
-	var leftWall = createWall(-(roadWidth + wallWidth) / 2, wallHeight / 2, -wallDepth / 2 + 2500, wallWidth, wallHeight,
+	var leftWall = createWall(-(roadWidth + wallWidth) / 2, wallHeight / 2, -wallDepth / 2 + 10000, wallWidth, wallHeight,
 		wallDepth);
 	object.wallArray.push(leftWall);
 	// 右墙体
@@ -155,8 +155,8 @@ function removePipe(index) {
  */
 
 // TODO: make this signal-slot model	
-var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function(texture) {});
-	
+var texture = new THREE.TextureLoader().load('img/textures/waterpipe.png', function (texture) { });
+
 function createPipe(index, offset, height, posY) {
 	var roadWidth = objectInfo.map.roadWidth;
 	// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -184,13 +184,13 @@ function addReward(index, offset, posY) {
 	rewardCoverBox.index = index;
 	rewardCoverBox.score = randomNum(global.objectInfo.reward.rewardScoreRange[0],
 		global.objectInfo.reward.rewardScoreRange[1]);
-	
+
 	scene.add(rewardCoverBox);
 
 	createReward(index, offset, posY);
-	
+
 	return global.object.reward.trueRewardArray[index];
-	
+
 }
 
 // 移除下标index处的奖励物
@@ -201,7 +201,7 @@ function removeReward(index) {
 	object.reward.trueRewardArray[index] = null;
 	// 奖励物包围盒
 	var rewardCoverBox = object.reward.coverBoxArray[index];
-	
+
 	scene.remove(rewardCoverBox);
 	object.reward.coverBoxArray[index] = null;
 }
@@ -222,32 +222,32 @@ function createRewardCoverBox(index, offset, posY) {
 
 
 
-function initFirstRewardModelObject(){
+function initFirstRewardModelObject() {
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath('model/Gift_Box/');
-	mtlLoader.load('BOX.mtl', function (materials){
-			materials.preload();
+	mtlLoader.load('BOX.mtl', function (materials) {
+		materials.preload();
 
-			var objLoader = new THREE.OBJLoader();
-			objLoader.setMaterials(materials);
-			var object = objLoader.load(
-				global.objectInfo.reward.rewardModelFilePath +
-				global.objectInfo.reward.rewardObjFileName,
-				function(object) {
-					console.log("The model path: "+ global.objectInfo.reward.rewardModelFilePath +
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials(materials);
+		var object = objLoader.load(
+			global.objectInfo.reward.rewardModelFilePath +
+			global.objectInfo.reward.rewardObjFileName,
+			function (object) {
+				console.log("The model path: " + global.objectInfo.reward.rewardModelFilePath +
 					global.objectInfo.reward.rewardObjFileName);
-					
-					object.scale.set(3, 3, 3);
-					object.rotation.x = -Math.PI/2;
-					global.object.reward.loadedRewardModel = object;
-					document.getElementById("modelLoadStatus").value++;
-					document.getElementById("modelLoadStatus").onchange();
-		});
+
+				object.scale.set(3, 3, 3);
+				object.rotation.x = -Math.PI / 2;
+				global.object.reward.loadedRewardModel = object;
+				document.getElementById("modelLoadStatus").value++;
+				document.getElementById("modelLoadStatus").onchange();
+			});
 	});
 }
 
-function createReward(index,offset,posY) {
-	var object =  global.object.reward.loadedRewardModel.clone();
+function createReward(index, offset, posY) {
+	var object = global.object.reward.loadedRewardModel.clone();
 	let deltaY = -75;
 	object.position.set(0, posY + deltaY, -index * objectInfo.pipe.distance + offset);
 	object.scale.set(3, 3, 3);
